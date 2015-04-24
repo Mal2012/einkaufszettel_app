@@ -1,7 +1,16 @@
 jQuery.noConflict();
 
+var username = window.localStorage.getItem("username");
+var sessionID = window.localStorage.getItem("sessionID");
+var currentPanel = jQuery("#login");
+
 jQuery(document).bind("mobileinit", function(){
-    jQuery("#submit_login").bind("click submit", function() {
+    
+        if(isLoggedIn()) {
+            switchPanel("shopping_list");
+        }
+    
+        jQuery("#submit_login").bind("click submit", function() {
         jQuery.ajax({
             url: "http://einkaufszettel.devdungeon.de/api/api.php?a=login&username="+jQuery("#username").val()+"&password="+jQuery("#password").val()+"",
             dataType: "json",
@@ -20,9 +29,21 @@ jQuery(document).bind("mobileinit", function(){
     });
 });
 
+function switchPanel(id) {
+    currentPanel.css({"display" : "none"});
+    currentPanel = jQuery("#"+id);
+    currentPanel.css({"display" : "block"});
+}
+
+function isLoggedIn() {
+    if(username !== null && sessionID !== null) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function fetchShoppingList() {
-    var username = window.localStorage.getItem("username");
-    var sessionID = window.localStorage.getItem("sessionID");
     var list;
     if(username !== null && sessionID !== null) {
        jQuery.ajax({
