@@ -113,3 +113,21 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
+
+/* Single Page Layout */
+#login {
+    display: block;
+}
+
+#list_entry_dummy {
+    display: none;
+}
+
+#shopping_list_header {
+    position: relative;
+}
+
+#refresh_list {
+    position: absolute;
+    left: 0px;
+}

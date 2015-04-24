@@ -33,9 +33,11 @@
         <title>Hello World</title>
     </head>
     <body>
-        <div class="app">
-            <h1>Einkaufszettel</h1>
-            <div ng-app="shoppingApp" data-role="content">
+        <div class="app" data-role="page">
+            <div data-role="header">
+                <h1>Einkaufszettel</h1>
+            </div>
+            <div data-role="content">
                 <div id="login">
                     <form id="check-user" class="ui-body ui-body-a ui-corner-all" data-ajax="false">
                         <fieldset>
@@ -51,21 +53,23 @@
                         </fieldset>
                     </form>
                 </div>
-                <div id="shopping_list">
-                    <div ng-controller="shoppingController">
-                        <div ng-repeat="(key,val) in posts" data-role="collapsible">
-                            <h3>{{key}}</h3>
-                            <p>I'm the collapsible content. By default I'm closed, but you can click the header to open me.</p>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <div data-role="page" id="shopping_list">
+            <div data-role="content">
+                <div id="shopping_list_header" data-role="header">
+                    <h3>Einkaufszettel</h3>
+                    <input type="button" data-theme="b" id="refresh_list" value="Aktualisieren" />
                 </div>
+                <div id="list_entry_dummy" data-role="collapsible">
+                    <h3></h3>
+                    <p></p>
+                </div>    
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
-        <script type="text/javascript" src="js/angular.min.js"></script>
-        <script type="text/javascript" src="js/mainAngular.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
     </body>
 </html>

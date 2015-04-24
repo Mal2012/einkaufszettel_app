@@ -119,6 +119,15 @@ h1 {
     display: block;
 }
 
-#shopping_list {
+#list_entry_dummy {
     display: none;
+}
+
+#shopping_list_header {
+    position: relative;
+}
+
+#refresh_list {
+    position: absolute;
+    left: 0px;
 }
