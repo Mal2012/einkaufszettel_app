@@ -2,14 +2,24 @@ jQuery.noConflict();
 var currentPanel = jQuery("#login");
 var listEntryDummy = jQuery("#list_entry_dummy");
 
-jQuery(document).bind("mobileinit", function(){
-        jQuery(document).delegate(".ui-page", "pagecontainershow", function() {
-            alert("argh"); 
+jQuery(document).bind("mobileinit", function(){   
+        jQuery(document).on("pageshow", "#splash_screen", function(event, date) {
+            var nextPage = "";
+            if(isLoggedIn()) {
+                nextPage = "shopping_list";
+            } else {
+                nextPage = "login";
+            }
+            switchPage(nextPage);
         });
         
-        jQuery('#refresh_list').bind("click"), function() {
+        jQuery(document).on("pageshow", "#shopping_list", function(event, date) {
             fetchShoppingList();
-        };
+        });
+        
+        jQuery('#refresh_list').bind("click", function() {
+            fetchShoppingList();
+        });
         
         jQuery("#submit_login").bind("click submit", function() {
         showLoadingWidget("Melde an, bitte warten ...");
@@ -21,9 +31,7 @@ jQuery(document).bind("mobileinit", function(){
                if(result.code === 0) {
                    setCurrentUsername(jQuery("#username").val());
                    setCurrentSessionID(result.msg);
-                   jQuery("#login").slideUp();
-                   jQuery.mobile.changePage("./index.html#shopping_list");
-                   fetchShoppingList();
+                    switchPage("shopping_list");
                }
                 hideLoadingWidget();
             },
@@ -70,7 +78,28 @@ function switchPanel(id) {
     currentPanel.css({"display" : "block"});
 }
 
+function switchPage(name) {
+    jQuery.mobile.changePage( "./index.html#"+name, { transition: "slideup"});
+}
+
 function isLoggedIn() {
+    var isLoggedIn = false;
+    if(getCurrentSessionID() !== null && getCurrentUsername() !== null) {
+        jQuery.ajax({
+            url: "http://einkaufszettel.devdungeon.de/api/api.php?a=checkLogin&session="+getCurrentSessionID()+"&username="+getCurrentUsername(),
+            dataType: "json",
+            async: false,
+            success: function(result) {
+                if(result.code === 0) {
+                                        alert("Yeah, angemeldet");
+
+                    isLoggedIn = true;
+                }
+            }
+        });
+   }
+   
+   return isLoggedIn;
 }
 
 function fetchShoppingList() {
@@ -85,14 +114,35 @@ function fetchShoppingList() {
             success: function(result) {
                if(result !== null) {
                    console.log(result);
-                    jQuery.each(result, function(i, item) {
-                        var entry = listEntryDummy.clone();
-                        entry.children("h3").eq(0).html(i + ":");
-                        entry.children("p").eq(0).html("sadsadasdsad");
-                        jQuery("#shopping_list").append(entry);
-                        entry.slideDown();
-                        entry.collapsible();
+                   var i = 0;
+                    jQuery.each(result, function(key, itemData) {
+                        var ele = jQuery("#shopping_list_content").children().eq(i);
+                        var entry;
+                        var collapsed = true;
+                        if(ele.length > 0) {
+                            entry = ele;
+                            entry.children("h3").eq(0).children(".ui-btn").text(itemData.name + ":");
+                            entry.children("div").eq(0).children(".ui-collapsible-content").text(itemData.name);
+                            collapsed = entry.collapsible( "option", "collapsed" );
+                        } else {
+                            var entry = listEntryDummy.clone();
+                            jQuery("#shopping_list_content").append(entry);
+                            entry.removeAttr("id");
+                            entry.children("h3").eq(0).text(key + ":");
+                            jQuery.each(itemData, function(key, itemValues) {
+                                entry.children("div").eq(0).find("checkbox").eq(0).attr("id", "checkbox_list_entry_"+i);
+                                entry.children("div").eq(0).find("checkbox").eq(0).attr("checked", (itemValues.status === 1) ? true : false).checkboxradio();
+                                entry.children("div").eq(0).find("label").eq(0).attr("for", "checkbox_list_entry_"+i);
+                                entry.children("div").eq(0).find("label").eq(0).html(itemValues.name);
+                            });
+                        }
+                        entry.collapsible({collapsed: collapsed});
+                        i++;
                     });
+                    console.log(i);
+                    if(i < jQuery("#shopping_list_content").children().length) {
+                        jQuery("#shopping_list_content").children(":gt("+(i-1)+")").slideUp();
+                    }
                }
             },
             error: function (request,error) {

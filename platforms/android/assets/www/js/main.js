@@ -2,9 +2,19 @@ jQuery.noConflict();
 var currentPanel = jQuery("#login");
 var listEntryDummy = jQuery("#list_entry_dummy");
 
-jQuery(document).bind("mobileinit", function(){
-        jQuery(document).delegate(".ui-page", "pagecontainershow", function() {
-            alert("argh"); 
+jQuery(document).bind("mobileinit", function(){   
+        jQuery(document).on("pageshow", "#splash_screen", function(event, date) {
+            var nextPage = "";
+            if(isLoggedIn()) {
+                nextPage = "shopping_list";
+            } else {
+                nextPage = "login";
+            }
+            jQuery.mobile.changePage("./index.html#"+nextPage);
+        });
+        
+        jQuery(document).on("pageshow", "#shopping_list", function(event, date) {
+            fetchShoppingList();
         });
         
         jQuery('#refresh_list').bind("click"), function() {
@@ -21,9 +31,7 @@ jQuery(document).bind("mobileinit", function(){
                if(result.code === 0) {
                    setCurrentUsername(jQuery("#username").val());
                    setCurrentSessionID(result.msg);
-                   jQuery("#login").slideUp();
                    jQuery.mobile.changePage("./index.html#shopping_list");
-                   fetchShoppingList();
                }
                 hideLoadingWidget();
             },
@@ -71,6 +79,25 @@ function switchPanel(id) {
 }
 
 function isLoggedIn() {
+    var isLoggedIn = false;
+    if(getCurrentSessionID() !== null && getCurrentUsername() !== null) {
+        jQuery.ajax({
+            url: "http://einkaufszettel.devdungeon.de/api/api.php?a=checkLogin&session="+getCurrentSessionID()+"&username="+getCurrentUsername(),
+            dataType: "json",
+            async: false,
+            success: function(result) {
+                if(result.code === 0) {
+                    isLoggedIn = true;
+                }
+            },
+            error: function (request,error) {
+                    alert('Beim laden der Einkaufszettel gab es einen Fehler');
+                    return false;
+            }
+        });
+   }
+   
+   return isLoggedIn;
 }
 
 function fetchShoppingList() {

@@ -33,12 +33,20 @@
         <title>Hello World</title>
     </head>
     <body>
-        <div class="app" data-role="page">
+        <div id="splash_screen" data-role="page">
             <div data-role="header">
-                <h1>Einkaufszettel</h1>
+                <h3>Einkaufszettel - Start</h3>
+            </div>
+            <div class="splash_screen" data-role="content">
+                <img src="./img/hs_logo.png" alt="HS Coburg Logo" />
+            </div>
+        </div>
+        <div id="login" data-role="page">
+            <div data-role="header">
+                <h1>Einkaufszettel - Login</h1>
             </div>
             <div data-role="content">
-                <div id="login">
+                <div>
                     <form id="check-user" class="ui-body ui-body-a ui-corner-all" data-ajax="false">
                         <fieldset>
                             <div data-role="fieldcontain">
@@ -56,15 +64,20 @@
             </div>
         </div>
         <div data-role="page" id="shopping_list">
-            <div data-role="content">
-                <div id="shopping_list_header" data-role="header">
-                    <h3>Einkaufszettel</h3>
-                    <input type="button" data-theme="b" id="refresh_list" value="Aktualisieren" />
+            <div id="shopping_list_header" data-role="header">
+                <h3>Einkaufszettel - Liste</h3>
+                <input type="button" data-theme="b" id="refresh_list" value="Aktualisieren" />
+                <div id="list_entry_dummy" data-collapsed="false" data-role="collapsible">
+                    <h3>Dummy Entry</h3>
+                    <div data-role="fieldcontain">
+                        <fieldset data-role="controlgroup">
+                            <input type="checkbox" name="checkbox_list_entry" id="checkbox_list_entry_dummy" class="custom" />
+                            <label for="checkbox_list_entry_dummy">I agree</label>
+                        </fieldset>
+                    </div>
                 </div>
-                <div id="list_entry_dummy" data-role="collapsible">
-                    <h3></h3>
-                    <p></p>
-                </div>    
+            </div>
+            <div data-role="content" id="shopping_list_content">
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
