@@ -22,25 +22,71 @@ jQuery(document).bind("mobileinit", function(){
         });
         
         jQuery("#submit_login").bind("click submit", function() {
-        showLoadingWidget("Melde an, bitte warten ...");
-        jQuery.ajax({
-            url: "http://einkaufszettel.devdungeon.de/api/api.php?a=login&username="+jQuery("#username").val()+"&password="+jQuery("#password").val()+"",
-            dataType: "json",
-            async: true,
-            success: function(result) {
-               if(result.code === 0) {
-                   setCurrentUsername(jQuery("#username").val());
-                   setCurrentSessionID(result.msg);
-                    switchPage("shopping_list");
-               }
-                hideLoadingWidget();
-            },
-            error: function (request,error) {
-                    alert('Beim Anmeldeversuch gab es einen Fehler');
+            showLoadingWidget("Melde an, bitte warten ...");
+            jQuery.ajax({
+                url: "http://einkaufszettel.devdungeon.de/api/api.php?a=login&username="+jQuery("#username").val()+"&password="+jQuery("#password").val()+"",
+                dataType: "json",
+                async: true,
+                success: function(result) {
+                   if(result.code === 0) {
+                       setCurrentUsername(jQuery("#username").val());
+                       setCurrentSessionID(result.msg);
+                       switchPage("shopping_list");
+                   }
                     hideLoadingWidget();
-            }
+                },
+                error: function (request,error) {
+                        alert('Beim Anmeldeversuch gab es einen Fehler');
+                        hideLoadingWidget();
+                }
+            });
         });
-    });
+        
+        jQuery("#logout").bind("click submit", function() {
+            showLoadingWidget("Melde ab, bitte warten ...");
+            jQuery.ajax({
+                url: "http://einkaufszettel.devdungeon.de/api/api.php?a=logout&session="+getCurrentSessionID()+"",
+                dataType: "json",
+                async: true,
+                success: function(result) {
+                   if(result.code === 0) {
+                       logout();
+                   } else {
+                        alert('Beim Abmeldeversuch gab es einen Fehler');
+                        hideLoadingWidget();
+                   }
+                },
+                error: function (request,error) {
+                        alert('Beim Abmeldeversuch gab es einen Fehler');
+                        hideLoadingWidget();
+                }
+            });
+        });
+        
+        jQuery("#submit_add_shopping_list").bind("click submit", function() {
+            var dialog = jQuery("#addShoppingList");
+            showLoadingWidget("Lege Liste an, bitte warten ...");
+            jQuery.ajax({
+                url: "http://einkaufszettel.devdungeon.de/api/api.php?a=addZettel&session="+getCurrentSessionID()+"&zettelname="+jQuery('#new_shopping_list_name').val()+"",
+                dataType: "json",
+                async: true,
+                success: function(result) {
+                   if(result.code === 0) {
+                       hideLoadingWidget();
+                        fetchShoppingList();
+                   } else {
+                        alert('Beim Versuch die Liste anzulegen gab es einen Fehler');
+                        hideLoadingWidget();
+                   }
+                   jQuery(dialog).popup( "close" );
+                },
+                error: function (request,error) {
+                        alert('Beim Versuch die Liste anzulegen gab es einen Fehler');
+                        hideLoadingWidget();
+                       jQuery(dialog).popup( "close" );
+                }
+            });
+        });
 });
 
 function showLoadingWidget(msg) {
@@ -102,11 +148,19 @@ function isLoggedIn() {
    return isLoggedIn;
 }
 
+function logout() {
+    setCurrentSessionID(0);
+    setCurrentUsername("");
+    hideLoadingWidget();
+    switchPage("login");
+}
+
 function fetchShoppingList() {
     var list;
     var username = getCurrentUsername();
     var sessionID = getCurrentSessionID();
     if(username !== null && sessionID !== null) {
+       showLoadingWidget("Aktualisiere Liste, bitte warten ...");
        jQuery.ajax({
             url: "http://einkaufszettel.devdungeon.de/api/api.php?a=getZettelJSON&session="+sessionID+"",
             dataType: "json",
@@ -144,8 +198,10 @@ function fetchShoppingList() {
                         jQuery("#shopping_list_content").children(":gt("+(i-1)+")").slideUp();
                     }
                }
+                hideLoadingWidget();
             },
             error: function (request,error) {
+                    hideLoadingWidget();
                     alert('Beim laden der Einkaufszettel gab es einen Fehler');
             }
         }); 

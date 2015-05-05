@@ -118,16 +118,28 @@ h1 {
     display: none;
 }
 
-#shopping_list_header {
-    position: relative;
+#shopping_list_navbar {
+    position: absolute;
+    width: 25%;
+    top: 0px;
+    right: 0px;
 }
 
-#refresh_list {
-    position: absolute;
-    left: 0px;
+#shopping_list_navbar a {
+    background-color: transparent;
+    border: 0px none;
 }
 
 .splash_screen img {
     width: 100%;
     margin-top: 100px;
+}
+
+#addShoppingList fieldset {
+    padding: 20px;
+}
+
+#shopping_list_footer {
+    text-align: center;
+    padding: 5px 0px;
 }
