@@ -136,9 +136,7 @@ function isLoggedIn() {
             dataType: "json",
             async: false,
             success: function(result) {
-                if(result.code === 0) {
-                                        alert("Yeah, angemeldet");
-
+                if(result.code === 0) {h
                     isLoggedIn = true;
                 }
             }
@@ -169,34 +167,21 @@ function fetchShoppingList() {
                if(result !== null) {
                    console.log(result);
                    var i = 0;
+                   var list = "";
                     jQuery.each(result, function(key, itemData) {
-                        var ele = jQuery("#shopping_list_content").children().eq(i);
-                        var entry;
-                        var collapsed = true;
-                        if(ele.length > 0) {
-                            entry = ele;
-                            entry.children("h3").eq(0).children(".ui-btn").text(itemData.name + ":");
-                            entry.children("div").eq(0).children(".ui-collapsible-content").text(itemData.name);
-                            collapsed = entry.collapsible( "option", "collapsed" );
-                        } else {
-                            var entry = listEntryDummy.clone();
-                            jQuery("#shopping_list_content").append(entry);
-                            entry.removeAttr("id");
-                            entry.children("h3").eq(0).text(key + ":");
-                            jQuery.each(itemData, function(key, itemValues) {
-                                entry.children("div").eq(0).find("checkbox").eq(0).attr("id", "checkbox_list_entry_"+i);
-                                entry.children("div").eq(0).find("checkbox").eq(0).attr("checked", (itemValues.status === 1) ? true : false).checkboxradio();
-                                entry.children("div").eq(0).find("label").eq(0).attr("for", "checkbox_list_entry_"+i);
-                                entry.children("div").eq(0).find("label").eq(0).html(itemValues.name);
-                            });
-                        }
-                        entry.collapsible({collapsed: collapsed});
+                        list += createShoppingListInHtml(itemData, true);
                         i++;
                     });
+                    jQuery("#shopping_list_content").append(list);
+                    console.log(list);
+                    jQuery("[data-role='collapsible']").collapsible().trigger('create');
                     console.log(i);
+                    
+                    /* create new implementation for fancy animation
                     if(i < jQuery("#shopping_list_content").children().length) {
                         jQuery("#shopping_list_content").children(":gt("+(i-1)+")").slideUp();
                     }
+                    */
                }
                 hideLoadingWidget();
             },
@@ -206,4 +191,42 @@ function fetchShoppingList() {
             }
         }); 
     }
+}
+
+function createShoppingListInHtml(entryJSON, collapsed) {
+    var id = "list_entry_"+entryJSON.name;
+    var listHtml = "<div id=\""+id+"\" data-collapsed=\""+collapsed+"\" data-role=\"collapsible\">";
+    listHtml += "<h3>"+entryJSON.name+"</h3>";
+    listHtml += "<div data-role=\"fieldcontain\"><fieldset data-role=\"controlgroup\">";
+    if(entryJSON.items !== undefined) {
+        jQuery.each(entryJSON.items, function(key, item) {
+            console.log(entryJSON.name + ": " + item.name);
+            listHtml += createShoppingListEntryInHtml(entryJSON.name, item);
+        });
+    }
+    listHtml += "</fieldset></div></div>";
+    return listHtml;
+    /*
+     <h3>Dummy Entry</h3>
+        <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup">
+                <input type="checkbox" name="checkbox_list_entry" id="checkbox_list_entry_dummy" class="custom" />
+                <label for="checkbox_list_entry_dummy">I agree</label>
+            </fieldset>
+        </div>
+     */
+}
+
+function createShoppingListEntryInHtml(listName, entryJSON) {
+    var id = "checkobox_list_entry_"+listName+"_"+entryJSON.name;
+    var listEntry = "";
+    if(jQuery("#"+id).length > 0) {
+        listEntry += jQuery("#"+id).html();
+        listEntry += jQuery("label[for='"+id+"']").html();
+    } else {
+        listEntry += "<input type=\"checkbox\" name=\""+id+"\" id=\""+id+"\" class=\"custom\" />";  
+        listEntry += "<label for=\""+id+"\">"+entryJSON.name+"</label>";
+    }
+    
+    return listEntry;
 }
