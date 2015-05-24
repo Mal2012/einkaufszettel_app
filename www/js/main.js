@@ -136,7 +136,7 @@ function isLoggedIn() {
             dataType: "json",
             async: false,
             success: function(result) {
-                if(result.code === 0) {h
+                if(result.code === 0) {
                     isLoggedIn = true;
                 }
             }
@@ -194,7 +194,7 @@ function fetchShoppingList() {
 }
 
 function createShoppingListInHtml(entryJSON, collapsed) {
-    var id = "list_entry_"+entryJSON.name;
+    var id = "list_entry_"+entryJSON.name+"_"+entryJSON.id;
     var listHtml = "<div id=\""+id+"\" data-collapsed=\""+collapsed+"\" data-role=\"collapsible\">";
     listHtml += "<h3>"+entryJSON.name+"</h3>";
     listHtml += "<div data-role=\"fieldcontain\"><fieldset data-role=\"controlgroup\">";
@@ -218,7 +218,7 @@ function createShoppingListInHtml(entryJSON, collapsed) {
 }
 
 function createShoppingListEntryInHtml(listName, entryJSON) {
-    var id = "checkobox_list_entry_"+listName+"_"+entryJSON.name;
+    var id = "checkobox_list_entry_"+listName+"_"+entryJSON.name+"_"+entryJSON.id;
     var listEntry = "";
     if(jQuery("#"+id).length > 0) {
         listEntry += jQuery("#"+id).html();
