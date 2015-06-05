@@ -2,6 +2,11 @@ jQuery.noConflict();
 var currentPanel = jQuery("#login");
 var listEntryDummy = jQuery("#list_entry_dummy");
 
+jQuery(document).on("load", function() {
+    alert("23456789");
+   
+});
+
 jQuery(document).bind("mobileinit", function(){   
         jQuery(document).on("pageshow", "#splash_screen", function(event, date) {
             var nextPage = "";
@@ -172,10 +177,20 @@ function fetchShoppingList() {
                         list += createShoppingListInHtml(itemData, true);
                         i++;
                     });
-                    jQuery("#shopping_list_content").append(list);
-                    console.log(list);
+                    jQuery("#shopping_list_content").html(list);
+                    //console.log(list);
                     jQuery("[data-role='collapsible']").collapsible().trigger('create');
-                    console.log(i);
+                    
+                    /** TODO: try to set events only once **/
+                    jQuery("[data-role='collapsible']").collapsible({
+                        collapse: function( event, ui ) {
+                            localStorage.setItem(jQuery(this).attr("id")+"_isCollapsed", true);
+                        },
+                        expand: function (event, ui) {
+                            localStorage.setItem(jQuery(this).attr("id")+"_isCollapsed", false);
+                        }
+                    });
+                    //console.log(i);
                     
                     /* create new implementation for fancy animation
                     if(i < jQuery("#shopping_list_content").children().length) {
@@ -195,6 +210,13 @@ function fetchShoppingList() {
 
 function createShoppingListInHtml(entryJSON, collapsed) {
     var id = "list_entry_"+entryJSON.name+"_"+entryJSON.id;
+    if(jQuery("#"+id).length > 0) {
+        console.log(id + " | " + collapsed);
+        collapsed = jQuery("#"+id).collapsible("option", "collapsed");
+        console.log(id + " | " + collapsed);
+    } else if(localStorage.getItem(id+"_isCollapsed") != null) {
+        collapsed = localStorage.getItem(id+"_isCollapsed");
+    }
     var listHtml = "<div id=\""+id+"\" data-collapsed=\""+collapsed+"\" data-role=\"collapsible\">";
     listHtml += "<h3>"+entryJSON.name+"</h3>";
     listHtml += "<div data-role=\"fieldcontain\"><fieldset data-role=\"controlgroup\">";
@@ -220,13 +242,8 @@ function createShoppingListInHtml(entryJSON, collapsed) {
 function createShoppingListEntryInHtml(listName, entryJSON) {
     var id = "checkobox_list_entry_"+listName+"_"+entryJSON.name+"_"+entryJSON.id;
     var listEntry = "";
-    if(jQuery("#"+id).length > 0) {
-        listEntry += jQuery("#"+id).html();
-        listEntry += jQuery("label[for='"+id+"']").html();
-    } else {
-        listEntry += "<input type=\"checkbox\" name=\""+id+"\" id=\""+id+"\" class=\"custom\" />";  
-        listEntry += "<label for=\""+id+"\">"+entryJSON.name+"</label>";
-    }
+    listEntry += "<input type=\"checkbox\" name=\""+id+"\" id=\""+id+"\" " + ((entryJSON.status == 1) ? "checked=\"checked\"" : "") + " class=\"custom\" />";  
+    listEntry += "<label for=\""+id+"\">"+entryJSON.name+"</label>";
     
     return listEntry;
 }
