@@ -2,9 +2,33 @@ jQuery.noConflict();
 var currentPanel = jQuery("#login");
 var listEntryDummy = jQuery("#list_entry_dummy");
 
-jQuery(document).on("load", function() {
-    alert("23456789");
-   
+jQuery(document).on("ready", function() {
+ jQuery("[type='checkbox']").bind("change", function() {
+            console.log(this);
+            alert("dasdsad");
+            /*
+            jQuery.ajax({
+                url: "http://einkaufszettel.devdungeon.de/api/api.php?a=updateItem&session="+getCurrentSessionID()+"&zettelid="+jQuery('#new_shopping_list_name').val()+"&itemid="++"",
+                dataType: "json",
+                async: true,
+                success: function(result) {
+                   if(result.code === 0) {
+                       hideLoadingWidget();
+                        fetchShoppingList();
+                   } else {
+                        alert('Beim Versuch die Liste anzulegen gab es einen Fehler');
+                        hideLoadingWidget(git;)
+                   }
+                   jQuery(dialog).popup( "close" );
+                },
+                error: function (request,error) {
+                        alert('Beim Versuch die Liste anzulegen gab es einen Fehler');
+                        hideLoadingWidget();
+                       jQuery(dialog).popup( "close" );
+                }
+            });
+            */
+        });
 });
 
 jQuery(document).bind("mobileinit", function(){   
