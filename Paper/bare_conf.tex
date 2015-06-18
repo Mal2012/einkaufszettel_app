@@ -352,24 +352,28 @@
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{Bare Demo of IEEEtran.cls for IEEECS Conferences}
+\title{Entwicklung einer Einkaufslisten-App}
 
 
 % author names and affiliations
 % use a multiple column layout for up to two different
 % affiliations
 
-\author{\IEEEauthorblockN{Authors Name/s per 1st Affiliation (Author)}
-\IEEEauthorblockA{line 1 (of Affiliation): dept. name of organization\\
-line 2: name of organization, acronyms acceptable\\
-line 3: City, Country\\
-line 4: Email: name@xyz.com}
+\author{\IEEEauthorblockN{Markus H\"ul\ss}
+\IEEEauthorblockA{
+Email: huma1200@stud.hs-coburg.de}
+\\
+\IEEEauthorblockN{Tanja M\"ogn}
+\IEEEauthorblockA{
+Email: mota1200@stud.hs-coburg.de}
 \and
-\IEEEauthorblockN{Authors Name/s per 2nd Affiliation (Author)}
-\IEEEauthorblockA{line 1 (of Affiliation): dept. name of organization\\
-line 2: name of organization, acronyms acceptable\\
-line 3: City, Country\\
-line 4: Email: name@xyz.com}
+\IEEEauthorblockN{Malcolm K\"ogler}
+\IEEEauthorblockA{
+Email: koma1200@stud.hs-coburg.de}
+\\
+\IEEEauthorblockN{Daniel M\"uller}
+\IEEEauthorblockA{
+Email: muda1200@stud.hs-coburg.de}
 }
 
 % conference papers do not typically use \thanks and this command
@@ -408,14 +412,13 @@ line 4: Email: name@xyz.com}
 
 
 \begin{abstract}
-Kurze Zusammenfassung wor\"uber das Paper handelt und was es enth\"alt
+In dieser Arbeit geht es um die Entwicklung einer Einkaufslisten-App.
 
 \end{abstract}
 
-\begin{IEEEkeywords}
-component; formatting; style; styling;
-
-\end{IEEEkeywords}
+%\begin{IEEEkeywords}
+%
+%\end{IEEEkeywords}
 
 
 % For peer review papers, you can put extra information on the cover
@@ -436,8 +439,23 @@ Einleitung zu unserer Einkaufslisten App. Warum der Bedarf f\"ur solche eine App
 % You must have at least 2 lines in the paragraph with the drop letter
 % (should never be an issue)
 
-\subsection{Ein Abschnitt}
-Ein Abschnitt falls n\"otig
+\section{Konkurrenzanalyse}
+Um sich einen \"Uberblick über vorhandene Apps zu verschaffen, wurde eine Konkurrenzanalyse erstellt.
+Diese Konkurrenzanalyse beschr\"ankt sich auf native Apps und lässt Cloud-basierte Lösungen außen vor.
+Zu diesem Zweck wurden die Top-Apps aus den App-Stores für die Plattformen Android, IOS und Windows Phone miteinander verglichen.
+Um die Apps miteinander vergleichen zu können, wurden drei Merkmale definiert. 
+Diese Merkmale waren Plattformunabh\"angigkeit bzw. Multiplattformf\"ahigkeit, 
+die M\"oglichkeit Einkaufslisten mit anderen Leuten zu Teilen sowie eine zentrale Datenhaltung mit Sychronisierung der Daten über mehrere Geräte hinweg.
+
+Am Markt gibt es mittelerweile mehrere Apps die darauf spezialisiert sind Einkaufslisten zu verwalten.
+Nur eine App bietet eine native Implementierung für die oben genannten Plattformen. Einige Apps bieten eine reduzierte Multiplattformf\"ahigkeit in dem Sinne, dass ein Webservice zu Verfügung gestellt wird über dem auf die Daten zugegriffen werden kann.
+Die meisten Apps bieten ein Backbone zur zentralen Datenhaltung.
+Nur wenige Apps bieten die Möglichkeit Einkaufslisten mit anderen zu teilen. Diese F\"ahigkeit ist teilweise darauf beschr\"ankt eine Einkaufsliste per E-Mail zu 
+verschicken.
+
+Einzig allein eine App deckt alle drei definierten Merkmale ab. 
+Für die Plattform Windows Phone ist keine App mit den definierten Merkmalen vorhanden.
+Bei Android und IOS ist die Situation etwas besser, allerdings ist auch hier Potenzial vorhanden.
 
 \section{Frontend}
 Ein wichtiges Ziel ist es eine plattform- und aufl\"osungsunabh\"angige Darstellung zu erm\"oglichen. Dabei soll das Frontend nicht f\"ur jede Plattform separat entwickelt werden, um sowohl Zeitaufwand, als auch potentielle Fehlerquellen zu verringern. Die Verwendung des Browser dienen als Grundlage, da jedes moderne mobile System solche einen mit sich bringt und auch eine Nutzung an einem Desktop PC erm\"oglicht. Dieser Abschnitt befasst sich mit den beiden Komponenten "Apache Cordova" und "jQuery mobile", welche die Umsetzung der Anforderungen erm\"oglichen.
