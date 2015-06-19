@@ -47,3 +47,7 @@ Temporary Items
 *.log
 *.synctex.gz
 *.pdf
+Paper/bare_conf.aux
+Paper/bare_conf.aux
+Paper/bare_conf.pdf
+Paper/bare_conf.synctex.gz
