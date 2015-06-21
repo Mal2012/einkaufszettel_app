@@ -70,7 +70,40 @@
 % manually specify the path to it like:
 % \documentclass[conference]{../sty/IEEEtran}
 
+% Packages
+\usepackage[pdftex]{graphicx}
 
+% for tables (use if required!)
+\usepackage{setspace}
+\usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage{lscape}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{url} 
+
+%Anpassung der Namen für Abbildung und Tabelle
+\usepackage[figurename={Abbildung},tablename={Tabelle}]{caption}
+
+% Better handling of floats
+\usepackage{float}
+
+\newcolumntype{w}[1]{>{\raggedleft\hspace{0pt}}p{#1}}
+\newcolumntype{x}[1]{>{\centering\hspace{0pt}}p{#1}}
+
+
+% Set spaces between and after floats here:
+\setlength{\textfloatsep}{8pt} % Vertical space below (above) [t] ([b]) floats
+
+
+\newcommand{\conforms}{\mathrel{\widehat{=}}}
+
+
+% correct bad hyphenation here
+\hyphenation{}
 
 
 
@@ -461,6 +494,13 @@ Bei Android und IOS ist die Situation etwas besser, allerdings ist auch hier Pot
 Zu Beginn der Entwicklung wurde eine M\"oglichkeit gesucht schnell einen Prototypen der App zu entwickeln.
 Zu diesem Zweck wurden Mockups f\"ur das Frontend erstellt. 
 Diese wurden in Teamarbeit entworfen und somit hatte jeder im Team eine Vorstellung wie die App sp\"ater aussehen soll.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.3]{./Bilder_Zeichnungen/Mockups/Einzelansicht.pdf}
+	\caption{Einzelansicht}
+	\label{fig:Mockup_Einzelansicht}
+\end{figure}
+In Abbildung~\ref{fig:Mockup_Einzelansicht} ist ein Beispiel für ein solches Mockup zu sehen. Die Abbildung~\ref{fig:Mockup_Einzelansicht} zeigt die Ansicht eines Einkaufszettels mit den zugehörigen Steuerelementen.
 
 
 \section{Frontend}
