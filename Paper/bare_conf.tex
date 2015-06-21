@@ -445,7 +445,7 @@ Email: muda1200@stud.hs-coburg.de}
 
 
 \begin{abstract}
-In dieser Arbeit geht es um die Entwicklung einer Einkaufslisten-App.
+Heutzutage h\"alt die Nutzung von Smartphones immer mehr Einzug in den Alltag eines Menschen. Aus diesem Gedanken wuchs die Idee eine Einkaufslisten App zu entwickeln, die selbstgeschriebene Zettel überfl\"ussig macht. Wichtige Anforderungen sind Plattformunabh\"angigkeit und die M\"oglichkeit Listen mit mehreren Nutzern zu teilen. Diese Arbeit zeigt den Ablauf des Projekts auf und erl\"autert die Verwendeten Technologien.
 
 \end{abstract}
 
@@ -471,7 +471,11 @@ In dieser Arbeit geht es um die Entwicklung einer Einkaufslisten-App.
 Fast jeder Mobiltelefon Nutzer hat heutzutage ein Smartphone. Immer pr\"asent und nicht mehr aus dem Alltag wegzudenken, unterst\"utzt es uns heute Tag f\"ur Tag in vielerlei Hinsicht. Ohne Chat oder Kalender geht es fast nicht mehr. Ein Blick in den App Store zeigt immer mehr Applikationen, die das Smartphone als Allrounder immer besser ausstattet. 
 Vor einigen Jahren hat man vor dem Einkauf noch schnell einen Einkaufszettel geschrieben. Aber wie schnell war der Zettel doch in der Tasche spurlos verschwunden, obwohl man sich so sicher war, den Zettel eingepackt zu haben. Heutzutage bietet sich das Smartphone als M\"oglichkeit an, einen Einkaufszettel zu speichern. Das bietet unter anderem die M\"oglichkeit den Einkaufszettel zu jeder Zeit zu erweitern, oder ihn mit anderen zu teilen. 
 Ziel dieser Arbeit ist es, eine Plattform \"ubergreifende Einkaufszettel App zu entwickeln. Damit kann man seinen Einkaufszettel mit der Familie oder mit den WG-Mitbewohnern teilen. Entwickelt wird die App mit einer zentralen Datenhaltung auf einem Server. Das Frontend wird als Web App mittels Cordova realisiert. Das Projekt wurde mittels des Wasserfallmodells entwickelt. Zun\"achst wurden die Anforderungen erhoben. Anschlie{\ss}end hat sich die Projektgruppe in zwei Teams aufgeteilt. Ein Team war f\"ur die Frontend-Entwicklung zust\"andig, das andere f\"ur das Backend. Der Programmcode wurde mittels des Versionierungssystem GIT verwaltet. Grafiken wurden mit Balsamiq und MS Visio 2013 erstellt. Die Kommunikation erfolgte teils pers\"onlich, teils \"uber E-Mails.
-In der vorliegenden kurzen schriftlichen Ausarbeitung des Themas werden zun\"achst die Anforderungen n\"aher beschrieben, welche die Grundlage f\"ur die Entwicklung bilden. Darauffolgend werden die verwendeten Technologien in Frontend und Backend im Zusammehang mit dem Nutzen in der App vorgestellt. Zuletzt werden in einer Zusammenfassung die Projekterfolge und Misserfolge aufgezeigt. 
+In der vorliegenden kurzen schriftlichen Ausarbeitung des Themas werden zun\"achst die Anforderungen n\"aher beschrieben, welche die Grundlage f\"ur die Entwicklung bilden. Darauffolgend werden die verwendeten Technologien in Frontend und Backend im Zusammehang mit dem Nutzen in der App vorgestellt. Zuletzt werden in einer Zusammenfassung die Projekterfolge und Misserfolge aufgezeigt.
+Fast jeder Mobiltelefon Nutzer hat heutzutage ein Smartphone. Immer pr\"asent und nicht mehr aus dem Alltag wegzudenken, unterst\"utzt es uns heute Tag für Tag in vielerlei Hinsicht. Ohne Chat oder Kalender geht es fast nicht mehr. Ein Blick in den App Store zeigt immer mehr Applikationen, die das Smartphone als Allrounder immer besser ausstattet. 
+Vor einigen Jahren hat man vor dem Einkauf noch schnell einen Einkaufszettel geschrieben. Aber wie schnell war der Zettel doch in der Tasche spurlos verschwunden, obwohl man sich so sicher war, den Zettel eingepackt zu haben. Heutzutage bietet sich das Smartphone als M\"oglichkeit an, einen Einkaufszettel zu speichern. Das bietet unter anderem die M\"oglichkeit den Einkaufszettel zu jeder Zeit zu erweitern, oder ihn mit anderen zu teilen. 
+Ziel dieser Arbeit ist es, eine Plattform \"ubergreifende Einkaufszettel App zu entwickeln. Damit kann man seinen Einkaufszettel mit der Familie oder mit den WG-Mitbewohnern teilen. Entwickelt wird die App mit einer zentralen Datenhaltung auf einem Server. Das Frontend wird als Web App mittels Cordova realisiert. Das Projekt wurde mittels des Wasserfallmodells entwickelt. Zun\"achst wurden die Anforderungen erhoben. Anschließend hat sich die Projektgruppe in zwei Teams aufgeteilt. Ein Team war für die Frontend-Entwicklung zuständig, das andere für das Backend. Der Programmcode wurde mittels des Versionierungssystem GIT verwaltet. Grafiken wurden mit Balsamiq und MS Visio 2013 erstellt. Die Kommunikation erfolgte teils pers\"onlich, teils über E-Mails.
+In der vorliegenden kurzen schriftlichen Ausarbeitung des Themas werden zunächst die Anforderungen n\"aher beschrieben, welche die Grundlage für die Entwicklung bilden. Darauffolgend werden die verwendeten Technologien in Frontend und Backend im Zusammehang mit dem Nutzen in der App vorgestellt. Zuletzt werden in einer Zusammenfassung die Projekterfolge und Misserfolge aufgezeigt.
 % You must have at least 2 lines in the paragraph with the drop letter
 % (should never be an issue)
 
@@ -499,7 +503,7 @@ Zu diesem Zweck wurden Mockups f\"ur das Frontend erstellt.
 Diese wurden in Teamarbeit entworfen und somit hatte jeder im Team eine Vorstellung wie die App sp\"ater aussehen soll.
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.3]{./Bilder_Zeichnungen/placeholder.pdf}
+	\includegraphics[scale=0.3]{./Bilder_Zeichnungen/Uebersicht.pdf}
 	\caption{Einzelansicht}
 	\label{fig:Mockup_Einzelansicht}
 \end{figure}
@@ -529,12 +533,12 @@ Aufgrund der Verwendung des javascriptbasierten JQuery-Mobile zur Erstellung ein
 
 \section{Architektur}
 {Damit die einzelnen Komponenten ordnungsgem\"a{\ss} so zusammenarbeiten um die Anforderungen zu erf\"ullen, ben\"otigt es noch eine passende Architektur. Aufgrund der verwendeten Technologien wird eine Drei-Schichten-Architektur verwendet. Somit l\"asst sich eine Trennung von Pr\"asentation und Anwendungslogik realisieren.
-\begin{figure*}[tb!]
+\begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.9\textwidth]{./Bilder_Zeichnungen/Architektur.png}
+	\includegraphics[width=0.45\textwidth]{./Bilder_Zeichnungen/Architektur.png}
 	\caption{3-Wege-Architektur f\"ur die App}
 	\label{fig:Architektur}
-\end{figure*}
+\end{figure}
 
 Die Abbildung~\ref{fig:Architektur} zeigt den genauen Aufbau der Architektur. Ein Client sendet seine Aktion per HTTP-Request an den Webserver. Dieser holt geforderte Daten aus der Datenbank, oder \"andert diese. Die von der Datenbank erhaltenen Daten werden in das JSON Format konvertiert. Danach werden sie als Inhalt des HTTP-Response an den Client gesendet. Der genauere Ablauf ist im folgenden Sequenzdiagramm ersichtlich.
 \begin{figure}[h!]
