@@ -445,7 +445,7 @@ Email: muda1200@stud.hs-coburg.de}
 
 
 \begin{abstract}
-Heutzutage h\"alt die Nutzung von Smartphones immer mehr Einzug in den Alltag eines Menschen. Aus diesem Gedanken wuchs die Idee eine Einkaufslisten App zu entwickeln, die selbstgeschriebene Zettel überfl\"ussig macht. Wichtige Anforderungen sind Plattformunabh\"angigkeit und die M\"oglichkeit Listen mit mehreren Nutzern zu teilen. Diese Arbeit zeigt den Ablauf des Projekts auf und erl\"autert die Verwendeten Technologien.
+Heutzutage h\"alt die Nutzung von Smartphones immer mehr Einzug in den Alltag eines Menschen. Aus diesem Gedanken wuchs die Idee eine Einkaufslisten App zu entwickeln, die selbstgeschriebene Zettel \"uberfl\"ussig macht. Wichtige Anforderungen sind Plattformunabh\"angigkeit und die M\"oglichkeit Listen mit mehreren Nutzern zu teilen. Diese Arbeit zeigt den Ablauf des Projekts auf und erl\"autert die Verwendeten Technologien.
 
 \end{abstract}
 
@@ -524,19 +524,23 @@ PHP wird im Backend verwendet um die Schnittstelle zwischen Anwendung und Datenb
 \subsection{MySQL}
 MySQL ist das weltweit verbreiteste relationale Datenbanksystem und kam vor allem wegen seiner plattformunabh\"angigkeit und der kostenfreien Nutzung unter der OpenSource-Lizenz zur Umsetzung der Datenbank in Frage. Bei der Auswahl spielte auch die M\"oglichkeit der Verwendung von verschiedenen Speicherssubsystemen eine Rolle. Durch die Verwendung von InnoDB stehen Rollback und Transaktionssicherungsm\"oglichkeiten zur Verf\"ugung, dies ist ein wichtiger Gesichtspunkt im Bezug auf Datensicherheit.
 
+\begin{figure*}[t]
+	\centering
+	\includegraphics[width=0.9\textwidth]{./Bilder_Zeichnungen/Architektur.png}
+	\caption{3-Wege-Architektur f\"ur die App}
+	\label{fig:Architektur}
+\end{figure*}
+
 \subsection{JSON}
 Aufgrund der Verwendung des javascriptbasierten JQuery-Mobile zur Erstellung einer Webapp lag die Verwendung von JSON als Format zum Datenaustausch zwischen Anwendung und Backend nahe. Dadurch ist es m\"oglich die Daten vom Backend ohne vorherige Konvertierung in der Anwendung weiter zu verwenden. Mithilfe von PHP l\"asst sich so die Schnittstelle nach dem ReST Programmierparadigma gestalten, die die geforderten Daten im JSON zur\"uckliefert. 
 
 \section{Architektur}
 {Damit die einzelnen Komponenten ordnungsgem\"a{\ss} so zusammenarbeiten um die Anforderungen zu erf\"ullen, ben\"otigt es noch eine passende Architektur. Aufgrund der verwendeten Technologien wird eine Drei-Schichten-Architektur verwendet. Somit l\"asst sich eine Trennung von Pr\"asentation und Anwendungslogik realisieren.
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.45\textwidth]{./Bilder_Zeichnungen/Architektur.png}
-	\caption{3-Wege-Architektur f\"ur die App}
-	\label{fig:Architektur}
-\end{figure}
+	
+
 
 Die Abbildung~\ref{fig:Architektur} zeigt den genauen Aufbau der Architektur. Ein Client sendet seine Aktion per HTTP-Request an den Webserver. Dieser holt geforderte Daten aus der Datenbank, oder \"andert diese. Die von der Datenbank erhaltenen Daten werden in das JSON Format konvertiert. Danach werden sie als Inhalt des HTTP-Response an den Client gesendet. Der genauere Ablauf ist im folgenden Sequenzdiagramm ersichtlich.
+
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.45\textwidth]{./Bilder_Zeichnungen/Sequenzdiagramm.png}
