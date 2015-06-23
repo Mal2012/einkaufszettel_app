@@ -495,10 +495,6 @@ Die meisten Apps bieten ein Backbone zur zentralen Datenhaltung.
 Nur wenige Apps bieten die M\"oglichkeit Einkaufslisten mit anderen zu teilen. Diese F\"ahigkeit ist teilweise darauf beschr\"ankt eine Einkaufsliste per E-Mail zu 
 verschicken.
 
-Einzig allein eine App deckt alle drei definierten Merkmale ab. 
-F\"ur die Plattform Windows Phone ist keine App mit den definierten Merkmalen vorhanden.
-Bei Android und IOS ist die Situation etwas besser, allerdings ist auch hier Potenzial vorhanden.
-
 \section{Mockups}
 Zu Beginn der Entwicklung wurde eine M\"oglichkeit gesucht schnell einen Prototypen der App zu entwickeln.
 Zu diesem Zweck wurden Mockups f\"ur das Frontend erstellt. 
@@ -541,7 +537,7 @@ Zus\"atzlich ist es mit dem Multi-Page-Layout Konzept m\"oglich mit einer einzig
 \section{Backend}
 Ein weiteres wichtiges Ziel ist es eine endger\"ateunabh\"angige Datenspeicherung zu gew\"ahrleisten. 
 Daf\"ur ist ein Backend das von \"uberall \"uber das Internet zu erreichen ist von n\"oten. 
-F\"ur die Umsetzung des Projekts entschieden wir uns f\"ur einen einfachen Webserver und die Nutzung von PHP und MySQL zur Datenhaltung und f\"ur JSON nach dem ReST-Standart zur Kommunikation zwischen Anwendung und Backend.  
+F\"ur die Umsetzung des Projekts entschieden wir uns f\"ur einen einfachen Webserver und die Nutzung von PHP und MySQL zur Datenhaltung und f\"ur JSON nach dem ReST-Standard zur Kommunikation zwischen Anwendung und Backend.  
 Dieser Abschnitt befasst sich mit den Komponenten PHP, MySQL und JSON, welche die Umsetzung der Anforderungen erm\"oglichen.
 
 \subsection{PHP}
@@ -577,13 +573,18 @@ Die Abbildung~\ref{fig:Architektur} zeigt den genauen Aufbau der Architektur. Ei
 \end{figure}
 
 \section{Zusammenfassung}
+Die Verwendung des Phonegap Frameworks brachte den Vorteil, das ohne gro{\ss}e R\"ucksicht auf die Plattform entwickelt werden konnte. 
+
 Anmerkung Tanja: Hier ist vielleicht wichtig das wir reinschreiben, dass zwar Cordova und JQuery mobile ganz h\"ubsch sind, es aber trotzdem noch nicht das wahre vom Ei ist. Au{\ss}erdem sollten wir erw\"ahnen wo es Probleme gab.
 
-\section {Ausblick (Anmerkung: Vielleicht noch erw\"ahnen inwiefern die Offline Benutzung realisiert werden kann, da das Grundkonzept eine persistente Datenspeicherung in einer zentralen Datenbank vorsieht.)}
-Die App “HIER NAME EINF\"UGEN” besitzt bereits alle notwendigen Funktionen um eine Einkaufsliste zu erstellen, editieren und teilen. In der weiteren Entwicklung werden die Vorteile von Phonegap eingebaut. So wird beispielsweise ein Offline-Modus entwickelt, der es erm\"oglichen soll, die App auch ohne permanenten Internetverbindung zu nutzten. Das ist mit Phonegap m\"oglich, da man mit diesem Framework die Qualit\"at der Internetverbindung abfragen kann. Des weiteren ist eine intelligentere Unterst\"utzung der App in den Alltag gedacht. Die App soll beispielsweise den User benachrichtigen, falls eine ein anderer User in einer gemeinsamen Einkaufsliste einen Eintrag ge\"andert oder hinzugef\"ugt hat. Hier ist wichtig das unbedingt der native Benachrichtigungsmodus des Systems verwendet wird um so viel Usability wie m\"oglich zu gew\"ahrleisten. Ein weitere Verbesserung w\"are auch die permanenten Lokalisierung des Users und eine Reaktion der Einkaufslisten-App, wenn sich der User in der N\"ahe oder in einem Einkaufsladen befindet. Hiermit hebt sich die HIER NAME EINF\"UGEN von seinem Konkurrenten auf dem Markt ab.
-
-%\section{Type style and Fonts}
-%Wherever Times is specified, Times Roman or Times New Roman may be used. If neither is available on your system, please use the font closest in appearance to Times. Avoid using bit-mapped fonts if possible. True-Type 1 or Open Type fonts are preferred. Please embed symbol fonts, as well, for math, etc.
+\section {Ausblick}
+Die App besitzt bereits alle notwendigen Funktionen um eine Einkaufsliste zu erstellen, zu editieren und zu teilen. In der weiteren Entwicklung zeigen sich die Vorteile die von Phonegap geboten werden. 
+So kann beispielsweise ein Offline-Modus entwickelt werden, der es erm\"oglichen soll, die App auch ohne permanente Internetverbindung zu nutzten. 
+%Das ist mit Phonegap m\"oglich, da man mit diesem Framework die Qualit\"at der Internetverbindung abfragen kann. 
+Des weiteren ist eine intelligentere Unterst\"utzung der App im Alltag gedacht. 
+Die App soll beispielsweise den User benachrichtigen, falls ein anderer User in einer gemeinsamen Einkaufsliste einen Eintrag ge\"andert oder hinzugef\"ugt hat. 
+%Hier ist wichtig das unbedingt der native Benachrichtigungsmodus des Systems verwendet wird um so viel Usability wie m\"oglich zu %gew\"ahrleisten. 
+Ein weitere Verbesserung w\"are auch die permanente Lokalisierung des Users und eine Reaktion der Einkaufslisten-App, wenn sich der User in der N\"ahe oder in einem Einkaufsladen befindet. 
 
 
 % An example of a floating figure using the graphicx package.
