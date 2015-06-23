@@ -445,7 +445,7 @@ Email: muda1200@stud.hs-coburg.de}
 
 
 \begin{abstract}
-Mangels Verf\"ugbarkeit von multitplattformf\"ahigen Apps zur Verwaltung von Einkaufslisten, entstand die Idee eine solche App zu entwicklen. Um den Entwicklungsaufwand möglichst gering zu halten und nicht für jede Plattform separat eine App zu programmieren, entschieden wir uns für das Framework Phonegap. Dieses Paper besch\"aftigt sich mit der Konzeption und Entwicklung der App.   
+Mangels Verf\"ugbarkeit von multitplattformf\"ahigen Apps zur Verwaltung von Einkaufslisten, entstand die Idee eine solche App zu entwicklen. Um den Entwicklungsaufwand m\"oglichst gering zu halten und nicht f\"ur jede Plattform separat eine App zu programmieren, entschieden wir uns f\"ur das Framework Phonegap. Dieses Paper besch\"aftigt sich mit der Konzeption und Entwicklung der App.   
 \end{abstract}
 
 %\begin{IEEEkeywords}
@@ -468,10 +468,18 @@ Mangels Verf\"ugbarkeit von multitplattformf\"ahigen Apps zur Verwaltung von Ein
 \section{Einleitung}
 % no \IEEEPARstart
 Immer pr\"asent und nicht mehr aus dem Alltag wegzudenken, unterst\"utzt  uns das Smartphone heute schon bei der Organisation und Kommunikation. Vor einigen Jahren hat man vor dem Einkauf noch schnell einen Einkaufszettel geschrieben. Aber wie schnell war der Zettel doch in der Tasche spurlos verschwunden, obwohl man sich so sicher war, den Zettel eingepackt zu haben. Heutzutage bietet sich das Smartphone als M\"oglichkeit an, einen Einkaufszettel zu speichern. Das bietet unter anderem die M\"oglichkeit den Einkaufszettel zu jeder Zeit zu erweitern, oder ihn mit anderen zu teilen. 
-Ziel dieser Arbeit ist es, eine Plattform \"ubergreifende Einkaufszettel App zu entwickeln. Damit kann man seinen Einkaufszettel mit der Familie oder mit den WG-Mitbewohnern teilen. Entwickelt wird die App mit einer zentralen Datenhaltung auf einem Server. Das Frontend wird als Web App mittels Cordova realisiert. Das Projekt wurde mittels des Wasserfallmodells entwickelt. Zun\"achst wurden die Anforderungen erhoben. Anschlie{\ss}end hat sich die Projektgruppe in zwei Teams aufgeteilt. Ein Team war f\"ur die Frontend-Entwicklung zust\"andig, das andere f\"ur das Backend. Der Programmcode wurde mittels des Versionierungssystem GIT verwaltet. Grafiken wurden mit Balsamiq und MS Visio 2013 erstellt. Die Kommunikation erfolgte teils pers\"onlich, teils \"uber E-Mails.
-In der vorliegenden kurzen schriftlichen Ausarbeitung des Themas werden zun\"achst die Anforderungen n\"aher beschrieben, welche die Grundlage f\"ur die Entwicklung bilden. Darauffolgend werden die verwendeten Technologien in Frontend und Backend im Zusammehang mit dem Nutzen in der App vorgestellt. Zuletzt werden in einer Zusammenfassung die Projekterfolge und Misserfolge aufgezeigt.
-% You must have at least 2 lines in the paragraph with the drop letter
-% (should never be an issue)
+Ziel dieser Arbeit ist es eine App zur Verwaltung von Einkaufszetteln zu entwickeln.
+Diese soll es erm\"oglichen erstellte Einkaufszettel mit anderen zu teilen.
+Die jeweilige Plattform des App-Benutzers sollte dabei kein Hindernis darstellen.
+Die Projektgruppe wurde in zwei Teams aufgeteilt. 
+Ein Team war f\"ur die Frontend-Entwicklung zust\"andig, das andere f\"ur das Backend. 
+Der Programmcode wurde mittels des Versionierungssystems GIT verwaltet. 
+Grafiken wurden mit Balsamiq und MS Visio 2013 erstellt. 
+Die Kommunikation erfolgte teils pers\"onlich, teils \"uber E-Mails.
+
+Am Anfang wurde eine Konkurrenzanalyse angefertigt um einen \"Uberblick \"uber die bereits am Markt verf\"ugbaren Apps zu erm\"oglichen.
+Als n\"achstes wird die Erstellung von Prototypen anhand von Mockups beschrieben, welche die Grundlage f\"ur die Entwicklung bildeten.
+Darauffolgend werden die verwendeten Technologien in Frontend und Backend im Zusammehang mit dem Nutzen in der App vorgestellt. Zuletzt werden in einer Zusammenfassung die Projekterfolge und Misserfolge aufgezeigt.
 
 \section{Konkurrenzanalyse}
 Um sich einen \"Uberblick \"uber vorhandene Apps zu verschaffen, wurde eine Konkurrenzanalyse erstellt.
@@ -503,24 +511,46 @@ Diese wurden in Teamarbeit entworfen und somit hatte jeder im Team eine Vorstell
 \end{figure}
 In Abbildung~\ref{fig:Mockup_Einzelansicht} ist ein Beispiel f\"ur ein solches Mockup zu sehen. Die Abbildung~\ref{fig:Mockup_Einzelansicht} zeigt die Ansicht eines Einkaufszettels mit den zugeh\"origen Steuerelementen.
 
-
 \section{Frontend}
-Ein wichtiges Ziel ist es eine plattform- und aufl\"osungsunabh\"angige Darstellung zu erm\"oglichen. Dabei soll das Frontend nicht f\"ur jede Plattform separat entwickelt werden, um sowohl Zeitaufwand, als auch potentielle Fehlerquellen zu verringern. Die Verwendung des Browser dient als Grundlage. Somit ist eine einfache Darstellung auf mobilen Ger\"aten und Desktop PC's m\"oglich. Dieser Abschnitt befasst sich mit den beiden Komponenten "Apache Cordova" und "jQuery mobile", welche die Umsetzung der Anforderungen erm\"oglichen.
+Ein wichtiges Ziel ist es eine plattform- und aufl\"osungsunabh\"angige Darstellung zu erm\"oglichen. 
+Dabei soll das Frontend nicht f\"ur jede Plattform separat entwickelt werden.
+Dies soll sowohl den Zeitaufwand, als auch potentielle Fehlerquellen zu verringern. 
+Der Browser dient als Grundlage für die Darstellung. 
+Somit ist eine einfache Darstellung auf mobilen Ger\"aten und Desktop PC's m\"oglich.
+Dieser Abschnitt befasst sich mit den beiden Komponenten "Phonegap" und "jQuery mobile".
 
-\subsection{Apache Cordova}
-Die auf dem Markt vorhandenen Applikationen entwickeln f\"ur Android, iPhone und Windows Phone jeweils separat. Das erfordert tiefgehendes KnowHow f\"ur die einzelnen Plattformen und weitergehende separate Fehler und Change-Request Behandlung. Aus diesem Grund wird bei der Entwicklung der App auf Apache Cordova, im Weiteren nur noch Cordova genannt, gesetzt. Cordova ist ein Framework zum Erstellen von nativen Anwendungen f\"ur die g\"angigsten mobilen Plattformen durch die Verwendung von HTML5.Das Konzept von Cordova ist auf einer Seite das Frontend einer Anwendung \"uber eine angezeigte Webseite im Browser zu realiseren. Auf der anderen Seite stellt es zus\"atzlich Javasript API's bereit die einem Zugriff auf bestimmte Hardware wie der Kamera oder bestimmte Sensoren erm\"oglichen. Auch kann auf Events wie eine schwache Funkverbindung reagiert werden. Somit sind Funktionalit\"aten nativer Apps gegeben, ohne sich intensiv mit der Architektur jeglicher Zielplattformen auseinanderzusetzen. Zus\"atzlich baut Cordova am Ende aus diesen Komponenten eine native App, welche sich in dem dementsprechenden Store anbieten l\"asst.
+\subsection{Phonegap}
+Die auf dem Markt vorhandenen Applikationen entwickeln f\"ur Android, iPhone und Windows Phone jeweils separate native Apps. 
+Das erfordert tiefgehendes KnowHow f\"ur die einzelnen Plattformen und weitergehende separate Behandlung von Fehler- und Change-Requests. 
+Aus diesem Grund wird bei der Entwicklung der App auf Phonegap gesetzt. Phonegap ist ein Framework zum Erstellen von nativen Anwendungen f\"ur die g\"angigsten mobilen Plattformen durch die Verwendung von HTML5.
+Das Konzept von Phonegap ist auf einer Seite das Frontend einer Anwendung \"uber eine angezeigte Webseite im Browser zu realiseren. 
+Auf der anderen Seite stellt es zus\"atzlich Javasript API's bereit die einem Zugriff auf bestimmte Hardware wie der Kamera oder bestimmte Sensoren erm\"oglichen. 
+Auch kann auf Events wie beispielsweise eine schwache Funkverbindung reagiert werden. 
+Somit sind Funktionalit\"aten nativer Apps gegeben, ohne sich intensiv mit der Architektur jeglicher Zielplattformen auseinanderzusetzen.
+Zus\"atzlich baut Phonegap am Ende aus diesen Komponenten eine native App, welche sich in dem dementsprechenden Store anbieten l\"asst.
 
 \subsection{jQuery Mobile}
-Ein zus\"atzliches Problem neben den unterschiedlichen Plattformen, ist die Vielzahl an unterschiedlichen Browsern und Displayaufl\"osungen der Endger\"ate. Die Anwendung soll ein einheitliches Design, unabh\"angig von Browser und Aufl\"osung besitzen. Ein Benutzer soll sich nicht bei einem Wechseln zwischen einem normalen und einem mobilen Browser bei der Bedienung umgew\"ohnen m\"u{\ss}en. Um dieser Anforderung nachzukommen wird auf das jQuery Mobile Framework zur\"uckgegriffen. Es erm\"oglicht eine einfache Umsetzung von Webseiten mit einem responsive Design und bietet eine gro{\ss}e Auswahl unterst\"utzter Browser (sowohl mobile, als auch non-mobile). Somit wird mit einer einzigen Version des Frontends eine gro{\ss}e Menge an Endger\"aten unterst\"utzt und tr\"agt zu einer schnellen Entwicklung der Anwendung bei. Zus\"atzlich ist es mit dem Multi-Page-Layout Konzept m\"oglich mit einer einzigen HTML-Seite alle Ansichten einer App darzustellen. Dadurch muss nicht bei jedem Wechsel einer Ansicht eine neue Seite heruntergeladen werden, womit sich die Performance verbessert und Traffic gespart wird. (Bisherige Quelle bisher nur die jQuery Mobile Website)
+Ein zus\"atzliches Problem neben den unterschiedlichen Plattformen, ist die Vielzahl an unterschiedlichen Browsern und Displayaufl\"osungen der Endger\"ate. 
+Die Anwendung soll ein einheitliches Design, unabh\"angig von Browser und Aufl\"osung besitzen. 
+Ein Benutzer soll sich nicht bei einem Wechseln zwischen einem normalen und einem mobilen Browser bei der Bedienung umgew\"ohnen m\"u{\ss}en. 
+Um dieser Anforderung nachzukommen wird auf das jQuery Mobile Framework zur\"uckgegriffen.
+Es erm\"oglicht eine einfache Umsetzung von Webseiten mit einem responsive Design und bietet eine gro{\ss}e Auswahl unterst\"utzter Browser (sowohl mobile, als auch non-mobile). 
+Somit wird mit einer einzigen Version des Frontends eine gro{\ss}e Menge an Endger\"aten unterst\"utzt und tr\"agt zu einer schnellen Entwicklung der Anwendung bei. 
+Zus\"atzlich ist es mit dem Multi-Page-Layout Konzept m\"oglich mit einer einzigen HTML-Seite alle Ansichten einer App darzustellen. Dadurch muss nicht bei jedem Wechsel einer Ansicht eine neue Seite heruntergeladen werden, womit sich die Performance verbessert und Traffic gespart wird. (Bisherige Quelle bisher nur die jQuery Mobile Website)
 
 \section{Backend}
-Ein weiteres wichtiges Ziel ist es eine endger\"ateunabh\"angige Datenspeicherung zu gew\"ahrleisten. Daf\"ur ist ein Backend das von \"uberall \"uber das Internet zu erreichen ist von n\"oten. F\"ur die Umsetzung des Projekts entschieden wir uns f\"ur einen einfachen Webserver und die Nutzung von PHP und MySQL zur Datenhaltung und f\"ur JSON nach dem ReST-Standart zur Kommunikation zwischen Anwendung und Backend.  Dieser Abschnitt befasst sich mit den Komponenten PHP, MySQL und JSON, welche die Umsetzung der Anforderungen erm\"oglichen.
+Ein weiteres wichtiges Ziel ist es eine endger\"ateunabh\"angige Datenspeicherung zu gew\"ahrleisten. 
+Daf\"ur ist ein Backend das von \"uberall \"uber das Internet zu erreichen ist von n\"oten. 
+F\"ur die Umsetzung des Projekts entschieden wir uns f\"ur einen einfachen Webserver und die Nutzung von PHP und MySQL zur Datenhaltung und f\"ur JSON nach dem ReST-Standart zur Kommunikation zwischen Anwendung und Backend.  
+Dieser Abschnitt befasst sich mit den Komponenten PHP, MySQL und JSON, welche die Umsetzung der Anforderungen erm\"oglichen.
 
 \subsection{PHP}
 PHP wird im Backend verwendet um die Schnittstelle zwischen Anwendung und Datenbank auf dem Webserver zu stellen. PHP unterst\"utzt unz\"ahlige Datenbanktypen und ein breites Spektrum an Funktionalit\"aten zur Konvertierung in das JSON Format.
 
 \subsection{MySQL}
-MySQL ist das weltweit verbreiteste relationale Datenbanksystem und kam vor allem wegen seiner plattformunabh\"angigkeit und der kostenfreien Nutzung unter der OpenSource-Lizenz zur Umsetzung der Datenbank in Frage. Bei der Auswahl spielte auch die M\"oglichkeit der Verwendung von verschiedenen Speicherssubsystemen eine Rolle. Durch die Verwendung von InnoDB stehen Rollback und Transaktionssicherungsm\"oglichkeiten zur Verf\"ugung, dies ist ein wichtiger Gesichtspunkt im Bezug auf Datensicherheit.
+MySQL ist ein weit verbreitetes relationales Datenbanksystem und kam vor allem wegen seiner plattformunabh\"angigkeit und der kostenfreien Nutzung unter der OpenSource-Lizenz zur Umsetzung der Datenbank in Frage. 
+Bei der Auswahl spielte auch die M\"oglichkeit der Verwendung von verschiedenen Speicherssubsystemen eine Rolle. 
+Durch die Verwendung von InnoDB stehen Rollback und Transaktionssicherungsm\"oglichkeiten zur Verf\"ugung, dies ist ein wichtiger Gesichtspunkt im Bezug auf Datensicherheit.
 
 \begin{figure*}[t]
 	\centering
@@ -530,14 +560,14 @@ MySQL ist das weltweit verbreiteste relationale Datenbanksystem und kam vor alle
 \end{figure*}
 
 \subsection{JSON}
-Aufgrund der Verwendung des javascriptbasierten JQuery-Mobile zur Erstellung einer Webapp lag die Verwendung von JSON als Format zum Datenaustausch zwischen Anwendung und Backend nahe. Dadurch ist es m\"oglich die Daten vom Backend ohne vorherige Konvertierung in der Anwendung weiter zu verwenden. Mithilfe von PHP l\"asst sich so die Schnittstelle nach dem ReST Programmierparadigma gestalten, die die geforderten Daten im JSON zur\"uckliefert. 
+Aufgrund der Verwendung des javascriptbasierten JQuery-Mobile zur Erstellung einer Webapp lag die Verwendung von JSON als Format zum Datenaustausch zwischen Anwendung und Backend nahe. 
+Dadurch ist es m\"oglich die Daten vom Backend ohne vorherige Konvertierung in der Anwendung weiter zu verwenden. 
+Mithilfe von PHP l\"asst sich so die Schnittstelle nach dem ReST Programmierparadigma gestalten, die die geforderten Daten im JSON zur\"uckliefert. 
 
 \section{Architektur}
-{Damit die einzelnen Komponenten ordnungsgem\"a{\ss} so zusammenarbeiten um die Anforderungen zu erf\"ullen, ben\"otigt es noch eine passende Architektur. Aufgrund der verwendeten Technologien wird eine Drei-Schichten-Architektur verwendet. Somit l\"asst sich eine Trennung von Pr\"asentation und Anwendungslogik realisieren.
+{Damit die einzelnen Komponenten ordnungsgem\"a{\ss} so zusammenarbeiten, ben\"otigt es noch eine passende Architektur. Aufgrund der verwendeten Technologien wird eine Drei-Schichten-Architektur verwendet. Somit l\"asst sich eine Trennung von Pr\"asentation und Anwendungslogik realisieren.
 	
-
-
-Die Abbildung~\ref{fig:Architektur} zeigt den genauen Aufbau der Architektur. Ein Client sendet seine Aktion per HTTP-Request an den Webserver. Dieser holt geforderte Daten aus der Datenbank, oder \"andert diese. Die von der Datenbank erhaltenen Daten werden in das JSON Format konvertiert. Danach werden sie als Inhalt des HTTP-Response an den Client gesendet. Der genauere Ablauf ist im folgenden Sequenzdiagramm ersichtlich.
+Die Abbildung~\ref{fig:Architektur} zeigt den genauen Aufbau der Architektur. Ein Client sendet seine Aktion per HTTP-Request an den Webserver. Dieser holt geforderte Daten aus der Datenbank, oder \"andert diese. Die von der Datenbank erhaltenen Daten werden in das JSON Format konvertiert. Danach werden sie als Inhalt des HTTP-Response an den Client gesendet. Der genauere Ablauf ist im Abbildung~\ref{fig:Sequenzdiagramm} ersichtlich.
 
 \begin{figure}[h!]
 	\centering
