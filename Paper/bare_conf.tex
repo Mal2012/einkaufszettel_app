@@ -151,16 +151,18 @@ Dadurch muss nicht bei jedem Wechsel einer Ansicht eine neue Seite heruntergelad
 \section{Backend}
 Ein weiteres wichtiges Ziel ist es, eine endger\"ateunabh\"angige Datenspeicherung zu gew\"ahrleisten. 
 Daf\"ur ist ein Backend, das von \"uberall \"uber das Internet zu erreichen ist, vonn\"oten. 
-F\"ur die Umsetzung des Projekts entschieden wir uns f\"ur einen einfachen Webserver und die Nutzung von PHP und MySQL zur Datenhaltung und f\"ur JSON nach dem ReST-Paradigma zur Kommunikation zwischen Anwendung und Backend.  
-Dieser Abschnitt befasst sich mit den Komponenten PHP, MySQL und JSON, welche die Umsetzung der Anforderungen erm\"oglichen.
+F\"ur die Umsetzung des Projekts entschieden wir uns f\"ur einen Webserver. Bei der Datenhaltung wird PHP und MySQL genutzt. 
+Die Kommunikation zwischen Frontend  und Backend erfolgt über JSON nach dem REST-Paradigma .  
+Dieser Abschnitt befasst sich mit den Komponenten PHP, MySQL und JSON.
 
 \subsection{PHP}
-PHP wird im Backend verwendet, um die Schnittstelle zwischen Anwendung und Datenbank auf dem Webserver zu stellen. PHP unterst\"utzt unz\"ahlige Datenbanktypen und ein breites Spektrum an Funktionalit\"aten zur Konvertierung in das JSON-Format.
+PHP wird im Backend verwendet, um die Schnittstelle zwischen Anwendung und Datenbank auf dem Webserver zu stellen. PHP unterst\"utzt unz\"ahlige Datenbanktypen und bietet ein breites Spektrum an Funktionalit\"aten zur Konvertierung in das JSON-Format.
 
 \subsection{MySQL}
 MySQL ist ein weit verbreitetes relationales Datenbanksystem und kam vor allem wegen seiner Platt\-formunabh\"angigkeit und der kostenfreien Nutzung unter der OpenSource-Lizenz zur Umsetzung der Datenbank in Frage. 
-Bei der Auswahl spielte auch die M\"oglichkeit der Verwendung von verschiedenen Speicherssubsystemen eine Rolle. 
-Durch die Verwendung von InnoDB stehen Rollback und Transaktionssicherungsm\"oglichkeiten zur Verf\"ugung, dies ist ein wichtiger Gesichtspunkt im Bezug auf Datensicherheit.
+Ein weiteres Kriterium, das für MySQL sprach, war die M\"oglichkeit damit verschiedene Speicherssubsystemen zu nutzen. 
+Durch die Verwendung von InnoDB stehen Rollback und Transaktionssicherungsm\"oglichkeiten zur Verf\"ugung. 
+Das ist ein wichtiger Gesichtspunkt im Bezug auf Datensicherheit.
 
 \begin{figure*}[t]
 	\centering
@@ -170,14 +172,14 @@ Durch die Verwendung von InnoDB stehen Rollback und Transaktionssicherungsm\"ogl
 \end{figure*}
 
 \subsection{JSON}
-Aufgrund der Verwendung des auf Javascript basierenden Frameworks JQuery-Mobile zur Erstellung einer Webapp lag die Verwendung von JSON als Format zum Datenaustausch zwischen Anwendung und Backend nahe. 
-Dadurch ist es m\"oglich, die Daten vom Backend ohne vorherige Konvertierung in der Anwendung zu verwenden. 
-Mithilfe von PHP l\"asst sich so die Schnittstelle nach dem ReST-Programmierparadigma gestalten,welche die geforderten Daten im JSON zur\"uckliefert. 
+Aufgrund der Verwendung des auf Javascript basierenden Frameworks JQuery-Mobile, lag die Verwendung von JSON nahe.
+Damit ist es können Daten vom Backend ohne spezielle Konvertierung in der Anwendung verwendet werden. 
+Mithilfe von PHP l\"asst sich so die Schnittstelle nach dem REST-Programmierparadigma gestalten.
 
 \section{Architektur}
-{Damit die einzelnen Komponenten ordnungsgem\"a{\ss} so zusammenarbeiten, ben\"otigt es noch einer passenden Architektur. Aufgrund der verwendeten Technologien wird eine Drei-Schichten-Architektur verwendet. Somit l\"asst sich eine Trennung von Pr\"asentation und Anwendungslogik realisieren.
+{Damit die einzelnen Komponenten ordnungsgem\"a{\ss} zusammenarbeiten wird die passende Architektur ben\"otigt. Aufgrund der verwendeten Technologien wird eine Drei-Schichten-Architektur verwendet. Somit l\"asst sich eine Trennung von Pr\"asentation und Anwendungslogik realisieren.
 	
-Die Abbildung~\ref{fig:Architektur} zeigt den genauen Aufbau der Architektur. Ein Client sendet seine Aktion per HTTP-Request an den Webserver. Dieser holt geforderte Daten aus der Datenbank oder \"andert diese. Die von der Datenbank erhaltenen Daten werden in das JSON-Format konvertiert. Danach werden sie als Inhalt des HTTP-Response an den Client gesendet. Der genauere Ablauf ist im Abbildung~\ref{fig:Sequenzdiagramm} ersichtlich.
+Die Abbildung~\ref{fig:Architektur} zeigt den genauen Aufbau der Architektur. Ein Client sendet seine Aktion per HTTP-Request an den Webserver. Dieser holt die geforderten Daten aus der Datenbank oder \"andert diese. Die von der Datenbank erhaltenen Daten werden in das JSON-Format konvertiert. Danach werden sie als Inhalt des HTTP-Response an den Client gesendet. Der genauere Ablauf ist im Abbildung~\ref{fig:Sequenzdiagramm} ersichtlich.
 
 \begin{figure}[h!]
 	\centering
@@ -187,15 +189,17 @@ Die Abbildung~\ref{fig:Architektur} zeigt den genauen Aufbau der Architektur. Ei
 \end{figure}
 
 \section{Fazit}
-Die Verwendung des Phonegap Frameworks brachte den Vorteil, dass ohne gro{\ss}e R\"ucksicht auf die Plattform entwickelt werden konnte. 
-Der Einsatz von JQuery mobile erm\"oglicht eine einheitliche Darstellung der mobilen Web-App auf allen Ger\"aten.
-Die Einbindung von anderen Frameworks war mit Komplikationen verbunden.
-Da viele Javascript-Frameworks den DOM-Tree manipulieren, gestaltet sich ein gleichzeitiger Einsatz mehrerer Javascript-Frameworks als schwierig.
+Der Vorteil von Phonegap ist, dass ohne gro{\ss}e R\"ucksichtnahme auf die Plattform entwickelt werden konnte. 
+Der Einsatz von JQuery mobile schafft eine einheitliche Darstellung der mobilen Web-App auf allen Ger\"aten.
+Die Einbindung von anderen Frameworks ist mit Komplikationen verbunden.
+Der Grund daf\"ur ist, dass viele Javascript-Frameworks den DOM-Tree manipulieren. 
+Somit musste auf Frameworks wie AngularJS, welche eine Entwicklung nach dem MVC Pattern erm\"oglicht h\"atten, verzichtet werden.
 
 
 \section {Ausblick}
-Die App besitzt bereits alle notwendigen Funktionen, um eine Einkaufsliste zu erstellen, zu editieren und zu teilen. In der weiteren Entwicklung zeigen sich die Vorteile, die von Phonegap geboten werden. 
-So kann beispielsweise ein Offline-Modus entwickelt werden, der es erm\"oglichen soll, die App auch ohne permanente Internetverbindung zu nutzten. 
+Die App besitzt bereits alle notwendigen Funktionen, um eine Einkaufsliste zu erstellen, zu editieren und zu teilen. 
+In der weiteren Entwicklung zeigen sich die Vorteile, die von Phonegap geboten werden. 
+So kann beispielsweise ein Offline-Modus entwickelt werden, damit die App auch ohne permanente Internetverbindung nutzbar ist. 
 %Das ist mit Phonegap m\"oglich, da man mit diesem Framework die Qualit\"at der Internetverbindung abfragen kann. 
 Des Weiteren ist an eine intelligentere Unterst\"utzung der App im Alltag gedacht. 
 Die App soll beispielsweise den User benachrichtigen, falls ein anderer User in einer gemeinsamen Einkaufsliste einen Eintrag ge\"andert oder hinzugef\"ugt hat. 
