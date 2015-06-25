@@ -125,27 +125,28 @@ Ein wichtiges Ziel ist es, eine plattform- und aufl\"osungsunabh\"angige Darstel
 Dabei soll das Frontend nicht f\"ur jede Plattform separat entwickelt werden.
 Dies soll sowohl den Zeitaufwand als auch potenzielle Fehlerquellen verringern. 
 Der Browser dient als Grundlage f\"ur die Darstellung. 
-Somit ist eine einfache Darstellung auf mobilen Ger\"aten und Desktop-PCs m\"oglich.
+Somit ist eine Darstellung auf mobilen Ger\"aten und Desktop-PCs m\"oglich.
 Dieser Abschnitt befasst sich mit den beiden Komponenten "Phonegap" und "jQuery mobile".
 
 \subsection{Phonegap}
-Die auf dem Markt vorhandenen Applikationen entwickeln f\"ur Android, iPhone und Windows Phone jeweils se\-parate native Apps. 
-Das erfordert tiefgehendes Know-how f\"ur die einzelnen Plattformen und weitergehende separate Behandlung von Fehler- und Change-Requests. 
+Die auf dem Markt vorhandenen Applikationen entwickeln f\"ur die Plattformen Android, iPhone und Windows Phone jeweils se\-parate native Apps. 
+Das erfordert tiefgehendes Know-how f\"ur die einzelnen Plattformen. Zudem wird die Behandlung von Fehler- und Change-Requests aufw\"andig, da diese f\"ur jedes System separat entwickelt werden m\"ussen. 
 Aus diesem Grund wird bei der Entwicklung der App auf Phonegap gesetzt. Phonegap ist ein Framework zum Erstellen von nativen Anwendungen f\"ur die g\"angigsten mobilen Plattformen durch die Verwendung von HTML5.
-Das Konzept von Phonegap ist, auf einer Seite das Frontend einer Anwendung \"uber eine angezeigte Webseite im Browser zu realiseren. 
-Auf der anderen Seite stellt es zus\"atzlich Javasript API's bereit, die einem Zugriff auf bestimmte Hardware wie die Kamera oder bestimmte Sensoren erm\"oglichen. 
-Auch kann auf Events wie beispielsweise eine schwache Funkverbindung reagiert werden. 
-Somit sind Funktionalit\"aten nativer Apps gegeben, ohne sich intensiv mit der Architektur jeglicher Zielplattformen auseinanderzusetzen.
-Zus\"atzlich baut Phonegap am Ende aus diesen Komponenten eine native App, welche sich in dem dementsprechenden Store anbieten l\"asst.
+Das Konzept von Phonegap ist, zum einen das Frontend der Anwendung \"uber eine angezeigte Webseite im Browser zu realiseren. 
+Zum anderen stellt es zus\"atzlich Javasript API's bereit, die einem Zugriff auf bestimmte Hardware eines Smartphones, wie beispielsweise Kamera oder Sensoren erm\"oglichen. 
+Wichtig ist, dass man damit auf plattformabh\"angige Events reagieren kann, zum Beispiel auf eine schwache Funkverbindung des Ger\"ats. 
+Somit sind Funktionalit\"aten nativer Apps gegeben, ohne sich intensiv mit der Architektur der Zielplattformen zu besch\aftigen.
+Der Buildprozess von Phonegap erstellt aus den Komponenten eine native App, welche sich zugeh\"origen App Store verkaufen l\"asst.
 
 \subsection{jQuery Mobile}
-Ein zus\"atzliches Problem neben den unterschiedlichen Plattformen, ist die Vielzahl an unterschiedlichen Browsern und Displayaufl\"osungen der Endger\"ate. 
-Die Anwendung soll ein einheitliches Design, unabh\"angig von Browser und Aufl\"osung besitzen. 
-Ein Benutzer soll sich nicht bei einem Wechseln zwischen einem normalen und einem mobilen Browser bei der Bedienung umgew\"ohnen m\"ussen. 
-Um dieser Anforderung nachzukommen, wird auf das jQuery Mobile Framework zur\"uckgegriffen.
-Es erm\"oglicht eine einfache Umsetzung von Webseiten mit einem responsive Design und bietet eine gro{\ss}e Auswahl unterst\"utzter Browser (sowohl mobile als auch non-mobile). 
-Somit wird mit einer einzigen Version des Frontends eine gro{\ss}e Menge an Endger\"aten unterst\"utzt und dies tr\"agt zu einer schnellen Entwicklung der Anwendung bei. 
-Zus\"atzlich ist es mit dem Multi-Page-Layout-Konzept m\"oglich, mit einer einzigen HTML-Seite alle Ansichten einer App darzustellen. Dadurch muss nicht bei jedem Wechsel einer Ansicht eine neue Seite heruntergeladen werden, womit sich die Performance verbessert und Traffic gespart wird. (Bisherige Quelle bisher nur die jQuery Mobile-Website)
+Ein weiters Problem ist, dass sich die App nicht durch die Vielzahl an unterschiedlichen Browsern und Displayaufl\"osungen der Endger\"ate beinflussen l\"asst. 
+Die Anwendung soll ein einheitliches Design, unabh\"angig von Browser und Aufl\"osung darstellen. 
+Der Nutzer der Anwendung muss auf allen Browsern, mobil und Desktop, das gleiche Design sehen.
+Um diese Anforderung zu erf\"ullen, wird auf das jQuery Mobile Framework zur\"uckgegriffen.
+Es erm\"oglicht eine einfache Umsetzung von Webseiten mit einem responsive Design. Dieses Frameworkt wird von einer gro{\ss}en Anzahl an unterschiedlichen Browsern unterst\"utzt (sowohl mobile als auch non-mobile). 
+Somit wird mit einer einzigen Version des Frontends eine gro{\ss}e Menge an Endger\"aten unterst\"utzt. Dies tr\"agt zu einer schnellen Entwicklung der Anwendung bei. 
+Des weiteren ist es mit dem Multi-Page-Layout-Konzept m\"oglich, mit einer einzigen HTML-Seite alle Ansichten einer App darzustellen. 
+Dadurch muss nicht bei jedem Wechsel einer Ansicht eine neue Seite heruntergeladen werden. Damit verbessert sich die Performance und Traffic wird gespart. (Bisherige Quelle bisher nur die jQuery Mobile-Website)
 
 \section{Backend}
 Ein weiteres wichtiges Ziel ist es, eine endger\"ateunabh\"angige Datenspeicherung zu gew\"ahrleisten. 
