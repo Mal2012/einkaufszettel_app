@@ -1,11 +1,15 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{fBuF03}
 
-\bibitem{bmbf}
+\bibitem[fBuF03]{bmbf}
 Bundesministerium für Bildung~und Forschung.
 \newblock It-ausstattung der allgemein bildenden und berufsbildenden schulen in
   deutschland.
 \newblock
   http://www.schulen-ans-netz.de/neuemedien/fakten/dokus/it-ausstattung-2003.pdf,
   2003.
+
+\bibitem[sds]{ABC}
+sdsadas.
+\newblock {\em dasdasdad}.
 
 \end{thebibliography}
