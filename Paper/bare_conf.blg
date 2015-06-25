@@ -1,6 +1,9 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: bare_conf.aux
 The style file: alpha.bst
 Database file #1: lit.bib
-Warning--empty publisher in ABC
-Warning--empty year in ABC
-(There were 2 warnings)
+Warning--entry type for "jQueryDemo" isn't style-file defined
+--line 10 of file lit.bib
+Warning--entry type for "jQueryStart" isn't style-file defined
+--line 19 of file lit.bib
+Warning--empty year in Steyer
+(There were 3 warnings)

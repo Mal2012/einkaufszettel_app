@@ -133,20 +133,20 @@ Die auf dem Markt vorhandenen Applikationen entwickeln f\"ur die Plattformen And
 Das erfordert tiefgehendes Know-how f\"ur die einzelnen Plattformen. Zudem wird die Behandlung von Fehler- und Change-Requests aufw\"andig, da diese f\"ur jedes System separat entwickelt werden m\"ussen. 
 Aus diesem Grund wird bei der Entwicklung der App auf Phonegap gesetzt. Phonegap ist ein Framework zum Erstellen von nativen Anwendungen f\"ur die g\"angigsten mobilen Plattformen durch die Verwendung von HTML5.
 Das Konzept von Phonegap ist, zum einen das Frontend der Anwendung \"uber eine angezeigte Webseite im Browser zu realiseren. 
-Zum anderen stellt es zus\"atzlich Javasript API's bereit, die einem Zugriff auf bestimmte Hardware eines Smartphones, wie beispielsweise Kamera oder Sensoren erm\"oglichen. 
-Wichtig ist, dass man damit auf plattformabh\"angige Events reagieren kann, zum Beispiel auf eine schwache Funkverbindung des Ger\"ats. 
+Zum anderen stellt es zus\"atzlich Javasript API's bereit, die einem Zugriff auf bestimmte Hardware eines Smartphones, wie beispielsweise Kamera oder Sensoren erm\"oglichen. \cite[S. 6]{Steyer}
+Wichtig ist, dass man damit auf plattformabh\"angige Events reagieren kann, zum Beispiel auf eine schwache Funkverbindung des Ger\"ats. \cite[S. 156]{Steyer}
 Somit sind Funktionalit\"aten nativer Apps gegeben, ohne sich intensiv mit der Architektur der Zielplattformen zu besch\"aftigen.
-Der Buildprozess von Phonegap erstellt aus den Komponenten eine native App, welche sich zugeh\"origen App Store verkaufen l\"asst.
+Der Buildprozess von Phonegap erstellt aus den Komponenten eine native App, welche sich zugeh\"origen App Store verkaufen l\"asst. \cite[S. 5]{Steyer}
 
 \subsection{jQuery Mobile}
 Ein weiters Problem ist, dass sich die App nicht durch die Vielzahl an unterschiedlichen Browsern und Displayaufl\"osungen der Endger\"ate beinflussen l\"asst. 
 Die Anwendung soll ein einheitliches Design, unabh\"angig von Browser und Aufl\"osung darstellen. 
 Der Nutzer der Anwendung muss auf allen Browsern, mobil und Desktop, das gleiche Design sehen.
 Um diese Anforderung zu erf\"ullen, wird auf das jQuery Mobile Framework zur\"uckgegriffen.
-Es erm\"oglicht eine einfache Umsetzung von Webseiten mit einem responsive Design. Dieses Frameworkt wird von einer gro{\ss}en Anzahl an unterschiedlichen Browsern unterst\"utzt (sowohl mobile als auch non-mobile). 
+Es erm\"oglicht eine einfache Umsetzung von Webseiten mit einem responsive Design. Dazu unterst\"utzt es eine große Anzahl an unterschiedlichen Browsern (sowohl mobile als auch non-mobile). \cite{jQueryStart}
 Somit wird mit einer einzigen Version des Frontends eine gro{\ss}e Menge an Endger\"aten unterst\"utzt. Dies tr\"agt zu einer schnellen Entwicklung der Anwendung bei. 
 Des weiteren ist es mit dem Multi-Page-Layout-Konzept m\"oglich, mit einer einzigen HTML-Seite alle Ansichten einer App darzustellen. 
-Dadurch muss nicht bei jedem Wechsel einer Ansicht eine neue Seite heruntergeladen werden. Damit verbessert sich die Performance und Traffic wird gespart. (Bisherige Quelle bisher nur die jQuery Mobile-Website)
+Dadurch muss nicht bei jedem Wechsel einer Ansicht eine neue Seite heruntergeladen werden. Damit verbessert sich die Performance und Traffic wird gespart. \cite{jQueryDemo}
 
 \section{Backend}
 Ein weiteres wichtiges Ziel ist es, eine endger\"ateunabh\"angige Datenspeicherung zu gew\"ahrleisten. 
@@ -161,12 +161,12 @@ PHP wird im Backend verwendet, um die Schnittstelle zwischen Anwendung und Daten
 \subsection{MySQL}
 MySQL ist ein weit verbreitetes relationales Datenbanksystem und kam vor allem wegen seiner Platt\-formunabh\"angigkeit und der kostenfreien Nutzung unter der OpenSource-Lizenz zur Umsetzung der Datenbank in Frage. 
 Ein weiteres Kriterium, das für MySQL sprach, war die M\"oglichkeit damit verschiedene Speicherssubsystemen zu nutzen. 
-Durch die Verwendung von InnoDB stehen Rollback und Transaktionssicherungsm\"oglichkeiten zur Verf\"ugung. 
+Durch die Verwendung von InnoDB stehen Rollback und Transaktionssicherungsm\"oglichkeiten zur Verf\"ugung. \cite{InnoDB}
 Das ist ein wichtiger Gesichtspunkt im Bezug auf Datensicherheit.
 
 \begin{figure*}[t]
 	\centering
-	\includegraphics[width=0.8\textwidth]{./Bilder_Zeichnungen/Architektur_2.png}
+	\includegraphics[width=0.9\textwidth]{./Bilder_Zeichnungen/Architektur.png}
 	\caption{3-Wege-Architektur f\"ur die App}
 	\label{fig:Architektur}
 \end{figure*}
@@ -206,11 +206,6 @@ Die App soll beispielsweise den User benachrichtigen, falls ein anderer User in 
 %Hier ist wichtig das unbedingt der native Benachrichtigungsmodus des Systems verwendet wird um so viel Usability wie m\"oglich zu %gew\"ahrleisten. 
 Ein weitere Verbesserung w\"are auch die permanente Lokalisierung des Users und eine Reaktion der Einkaufslisten-App, wenn sich der User in der N\"ahe oder in einem Einkaufsladen befindet. 
 
-\cite[S.7]{bmbf}
-\cite[S.7]{ABC}
-
 \bibliography{lit}
 \bibliographystyle{alpha}
 \end{document}
-
-
