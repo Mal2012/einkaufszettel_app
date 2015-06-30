@@ -72,8 +72,12 @@
                             <li><a id="logout" data-icon="arrow-l" href="#"></a></li>
                     </ul>
                 </div>
-                <div id="list_entry_dummy" data-collapsed="false" data-role="collapsible">
-                    <h3>Dummy Entry</h3>
+                <div id="list_entry_dummy" class="entry_list" data-collapsed="false" data-role="collapsible">
+                    <h3>
+                        <span>Dummy Entry<span>
+                        <a href="#" data-role="button" data-icon="plus" data-mini='true' data-inline="true" data-icon-pos="center"></a>
+                        <a href="#" data-role="button" data-icon="delete" data-mini='true' data-inline="true" data-icon-pos="center"></a>
+                    </h3>
                     <div data-role="fieldcontain">
                         <fieldset data-role="controlgroup">
                             <input type="checkbox" name="checkbox_list_entry" id="checkbox_list_entry_dummy" class="custom" />
@@ -87,7 +91,7 @@
             <div data-role="content" id="shopping_list_content">
             </div>
             <div data-role="footer" id="shopping_list_footer" data-position="fixed" class="ui-bar">
-                <a href="#addShoppingList" data-transition="slidedown" data-rel="popup" data-position-to="window" data-icon="plus">Eintrag hinzuf&uuml;</a>
+                <a href="#addShoppingList" data-transition="slidedown" data-rel="popup" data-position-to="window" data-icon="plus">Liste hinzuf&uuml;</a>
             </div>
             <div data-role="popup" data-overlay-theme="a" id="addShoppingList">
                 <a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
