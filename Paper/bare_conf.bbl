@@ -1,0 +1,27 @@
+\begin{thebibliography}{Man}
+
+\bibitem[jFa]{jQueryDemo}
+jQuery Foundation.
+\newblock Pages - jquery mobile demos.
+\newblock \url{http://demos.jquerymobile.com/1.4.2/pages/}.
+\newblock [Online; letzter Zugriff 25.06.2015].
+
+\bibitem[jFb]{jQueryStart}
+jQuery Foundation.
+\newblock A touch-optimized web framework.
+\newblock \url{http://jquerymobile.com/}.
+\newblock [Online; letzter Zugriff 25.06.2015].
+
+\bibitem[Man]{InnoDB}
+MySQL Manual.
+\newblock Mysql glossary - acid.
+\newblock \url{http://dev.mysql.com/doc/refman/5.7/en/glossary.html#glos_acid}.
+\newblock [Online; letzter Zugriff 25.06.2015].
+
+\bibitem[Ste]{Steyer}
+Ralph Steyer.
+\newblock {\em Apps mit PhoneGap entwickeln - Universelle Web-Apps
+  plattformneutral programmieren}.
+\newblock Carl Hanser Verlag GmbH \& Co. KG.
+
+\end{thebibliography}
