@@ -120,9 +120,12 @@ h1 {
 
 #shopping_list_navbar {
     position: absolute;
-    width: 25%;
     top: 0px;
-    right: 0px;
+    right: 1.4em;
+}
+
+#shopping_list_navbar li {
+    width: 2.5em !important;
 }
 
 #shopping_list_navbar a {
@@ -135,7 +138,7 @@ h1 {
     margin-top: 100px;
 }
 
-#addShoppingList fieldset {
+#addShoppingList fieldset, #addListUser fieldset, #removeShoppingList fieldset, #addShoppingItem fieldset{
     padding: 20px;
 }
 
@@ -189,16 +192,32 @@ h1 {
 }
 
 .clear_btn {
-    position: absolute;
     box-shadow: none !important;
     border: 0px none transparent !important;
-    top: 0%;
 }
 
-.clear_btn[data-icon="plus"] {
+.list_btns {
+    position: absolute;
+    top: 5px;
     right: 1%;
 }
 
-.clear_btn[data-icon="delete"] {
-    right: 3%;
+.list_btns * {
+    box-shadow: none !important;
+    border: 0px none transparent !important;
+    background-color: transparent !important;
+}
+
+.list_btns *:hover {
+    background-color: transparent !important;
+}
+
+.list_btns a {
+    padding-top: 14px !important;
+    padding-right: 0px;
+}
+
+a[href="#addShoppingItem"] {
+    width: 12em;
+    margin: 20px auto 0px auto;
 }

@@ -87,6 +87,103 @@ jQuery(document).bind("mobileinit", function () {
             }
         });
     });
+    
+    jQuery("#submit_add_shopping_item").bind("click submit", function () {
+        var dialog = jQuery("#addShoppingItem");
+        showLoadingWidget("Lege Liste an, bitte warten ...");
+        jQuery.ajax({
+            url: "http://einkaufszettel.devdungeon.de/api/api.php?a=addItem&session=" + getCurrentSessionID() + "&zettelid=" + jQuery('#current_list_id').val() + "&itemname=" + jQuery("#new_shopping_item_name").val() + "",
+            dataType: "json",
+            async: true,
+            success: function (result) {
+                if (result.code === 0) {
+                    hideLoadingWidget();
+                    fetchShoppingList();
+                } else {
+                    alert('Beim Versuch das Produkt anzulegen gab es einen Fehler');
+                    hideLoadingWidget();
+                }
+                jQuery(dialog).popup("close");
+            },
+            error: function (request, error) {
+                alert('Beim Versuch das Produkt anzulegen gab es einen Fehler');
+                hideLoadingWidget();
+                jQuery(dialog).popup("close");
+            }
+        });
+    });
+
+    jQuery("#submit_add_list_user").bind("click submit", function () {
+        var dialog = jQuery("#addListUser");
+        showLoadingWidget("Teile Liste mit angegebenen Benutzer, bitte warten ...");
+        jQuery.ajax({
+            url: "http://einkaufszettel.devdungeon.de/api/api.php?a=userFind&session=" + getCurrentSessionID() + "&usermail=" + jQuery('#new_shopping_list_user').val() + "",
+            dataType: "json",
+            async: true,
+            success: function (result) {
+                if (result.code === 0) {
+                    jQuery.ajax({
+                        url: "http://einkaufszettel.devdungeon.de/api/api.php?a=shareZettel&session=" + getCurrentSessionID() + "&usermail=" + jQuery('#new_shopping_list_user').val() + "&zettelid=" + jQuery("#current_list_id").val() + "&userid=" + result.msg +"",
+                        dataType: "json",
+                        async: true,
+                        success: function (result) {
+                            if (result.code === 0) {
+                                hideLoadingWidget();
+                                fetchShoppingList();
+                            } else {
+                                alert('Beim Versuch den Zettel zu teilen gab es einen Fehler');
+                                hideLoadingWidget();
+                            }
+                            jQuery(dialog).popup("close");
+                        },
+                        error: function (request, error) {
+                            alert('Beim Versuch den Zettel zu teilen gab es einen Fehler');
+                            hideLoadingWidget();
+                            jQuery(dialog).popup("close");
+                        }
+                    });
+                } else {
+                    alert(result.msg);
+                    hideLoadingWidget();
+                }
+                jQuery(dialog).popup("close");
+            },
+            error: function (request, error) {
+                alert('Beim Versuch die Liste anzulegen gab es einen Fehler');
+                hideLoadingWidget();
+                jQuery(dialog).popup("close");
+            }
+        });
+    });
+
+    jQuery("#apply_remove_shopping_list").bind("click submit", function () {
+        var dialog = jQuery("#removeShoppingList");
+        showLoadingWidget("L&ouml;sche Liste, bitte warten ...");
+        jQuery.ajax({
+            url: "http://einkaufszettel.devdungeon.de/api/api.php?a=delZettel&session=" + getCurrentSessionID() + "&zettelid=" + jQuery('#current_list_id').val() + "",
+            dataType: "json",
+            async: true,
+            success: function (result) {
+                if (result.code === 0) {
+                    hideLoadingWidget();
+                    fetchShoppingList();
+                } else {
+                    alert('Beim Versuch die Liste anzulegen gab es einen Fehler');
+                    hideLoadingWidget();
+                }
+                jQuery(dialog).popup("close");
+            },
+            error: function (request, error) {
+                alert('Beim Versuch die Liste anzulegen gab es einen Fehler');
+                hideLoadingWidget();
+                jQuery(dialog).popup("close");
+            }
+        });
+    });
+
+    jQuery("#chancel_remove_shopping_list").bind("click submit", function () {
+        jQuery("#removeShoppingList").popup("close");
+    });
 
     jQuery(document).on("change", "[type='checkbox']", function () {
         var noteId = parseInt(jQuery(this).parents("[data-role='collapsible']").attr("id").replace(/[^0-9]*/g, ""));
@@ -121,12 +218,16 @@ jQuery(document).bind("mobileinit", function () {
         });
     });
     
-    jQuery(document).on("mouseup", ".entry_list a[data-role=\"button\"]", function(e) {
-        alert("asdd");
+    
+    jQuery(document).on("click", ".entry_list input[data-role=\"button\"]", function(e) {
         e.stopPropagation();
         e.stopImmediatePropagation();
-        e.stop();
     }); 
+    
+    jQuery(document).on("mouseup", "[href=\"#addListUser\"], [href=\"#removeShoppingList\"], [href=\"#addShoppingItem\"]", function(e) {
+        var noteId = parseInt(jQuery(this).parents("[data-role='collapsible']").attr("id").replace(/[^0-9]*/g, ""));
+        jQuery("#current_list_id").val(noteId);
+    });
     
 });
 
@@ -217,17 +318,23 @@ function fetchShoppingList(noLoadingWidget) {
                     });
                     jQuery("#shopping_list_content").html(list);
                     //console.log(list);
-                    jQuery("[data-role='collapsible']").collapsible().trigger('create');
-
                     /** TODO: try to set events only once **/
                     jQuery("[data-role='collapsible']").collapsible({
+                        create: function(event, ui) {
+                            console.log("sadsadsd");
+                            jQuery(this).append(jQuery(this).find(".list_btns"));  
+                        },
                         collapse: function (event, ui) {
                             localStorage.setItem(jQuery(this).attr("id") + "_isCollapsed", true);
+                            jQuery(this).append(jQuery(this).find(".list_btns"));
                         },
                         expand: function (event, ui) {
                             localStorage.setItem(jQuery(this).attr("id") + "_isCollapsed", false);
                         }
                     });
+                    jQuery("[data-role='collapsible']").collapsible().trigger('create');
+
+                    
                     //console.log(i);
 
                     /* create new implementation for fancy animation
@@ -256,17 +363,20 @@ function createShoppingListInHtml(entryJSON, collapsed) {
         collapsed = localStorage.getItem(id + "_isCollapsed");
     }
     var listHtml = "<div id=\"" + id + "\" class=\"entry_list\" data-collapsed=\"" + collapsed + "\" data-role=\"collapsible\">";
-    listHtml += "<h3>" + entryJSON.name;
-    listHtml += "<a class=\"clear_btn\" href=\"#\" data-role=\"button\" data-icon=\"plus\" data-mini='true' data-inline=\"true\" data-icon-pos=\"center\"></a>";
-    listHtml += "<a class=\"clear_btn\" href=\"#\" data-role=\"button\" data-icon=\"delete\" data-mini='true' data-inline=\"true\" data-icon-pos=\"center\"></a>";
-    listHtml += "</h3>";
+    listHtml += "<div class=\"list_btns\">";
+    listHtml += "<a href=\"#addListUser\" data-transition=\"slidedown\" data-rel=\"popup\" data-position-to=\"window\" data-role=\"button\" class=\"clear_btn\" data-role=\"button\" data-icon=\"plus\" data-mini='true' data-inline=\"true\" data-icon-pos=\"center\" ></a>";
+    listHtml += "<a href=\"#removeShoppingList\" data-transition=\"slidedown\" data-rel=\"popup\" data-position-to=\"window\" data-role=\"button\" class=\"clear_btn\" data-role=\"button\" data-icon=\"delete\" data-mini='true' data-inline=\"true\" data-icon-pos=\"center\" ></a>";
+    listHtml += "</div>";
+    listHtml += "<h3>" + entryJSON.name + "</h3>";
     listHtml += "<div data-role=\"fieldcontain\"><fieldset data-role=\"controlgroup\">";
     if (entryJSON.items !== undefined) {
         jQuery.each(entryJSON.items, function (key, item) {
             listHtml += createShoppingListEntryInHtml(entryJSON.name, item);
         });
     }
-    listHtml += "</fieldset></div></div>";
+    listHtml += "</fieldset>";
+    listHtml += "<a data-role=\"button\" href=\"#addShoppingItem\" data-transition=\"slidedown\" data-rel=\"popup\" data-position-to=\"window\" data-icon=\"plus\">Produkt hinzuf&uuml;gen</a>";
+    listHtml += "</div></div>";
     return listHtml;
     /*
      <h3>Dummy Entry</h3>
