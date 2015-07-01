@@ -91,6 +91,7 @@ jQuery(document).bind("mobileinit", function () {
     jQuery(document).on("change", "[type='checkbox']", function () {
         var noteId = parseInt(jQuery(this).parents("[data-role='collapsible']").attr("id").replace(/[^0-9]*/g, ""));
         var itemId = parseInt(jQuery(this).attr("id").replace(/[^0-9]*/g, ""));
+        var wholeId = jQuery(this).attr("id");
         var state = (jQuery(this).is(":checked") ? 1 : 0);
 
         jQuery.ajax({
@@ -98,7 +99,10 @@ jQuery(document).bind("mobileinit", function () {
             dataType: "json",
             async: true,
             beforeSend: function() {
-                jQuery("label[for='"+itemId+"']").parent().append("<img src=\"./img/loader.gif\" />");
+                var loader = new Image();
+                loader.src = "./img/loader.gif";
+                jQuery(loader).addClass("loader");
+                jQuery("label[for='"+wholeId+"']").append(loader);
             },
             success: function (result) {
                 if (result.code === 0) {
@@ -107,24 +111,30 @@ jQuery(document).bind("mobileinit", function () {
                     alert('Beim Versuch den Status zu aktualisieren gab es einen Fehler');
                     hideLoadingWidget();
                 }
-                jQuery(dialog).popup("close");
             },
             error: function (request, error) {
                 alert('Beim Versuch den Status zu aktualisieren gab es einen Fehler');
-                jQuery(dialog).popup("close");
             },
             ajaxComplete: function () {
                 ///jQuery("label[for='"+itemId+"']").removeClass("cloud_icon");
             }
         });
     });
+    
+    jQuery(document).on("mouseup", ".entry_list a[data-role=\"button\"]", function(e) {
+        alert("asdd");
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        e.stop();
+    }); 
+    
 });
 
 function showLoadingWidget(msg) {
     jQuery.mobile.loading('show', {
         text: msg,
         textVisible: true,
-        theme: 'b',
+        theme: 'a',
         html: ""
     });
 }
@@ -246,7 +256,10 @@ function createShoppingListInHtml(entryJSON, collapsed) {
         collapsed = localStorage.getItem(id + "_isCollapsed");
     }
     var listHtml = "<div id=\"" + id + "\" class=\"entry_list\" data-collapsed=\"" + collapsed + "\" data-role=\"collapsible\">";
-    listHtml += "<h3>" + entryJSON.name + "</h3>";
+    listHtml += "<h3>" + entryJSON.name;
+    listHtml += "<a class=\"clear_btn\" href=\"#\" data-role=\"button\" data-icon=\"plus\" data-mini='true' data-inline=\"true\" data-icon-pos=\"center\"></a>";
+    listHtml += "<a class=\"clear_btn\" href=\"#\" data-role=\"button\" data-icon=\"delete\" data-mini='true' data-inline=\"true\" data-icon-pos=\"center\"></a>";
+    listHtml += "</h3>";
     listHtml += "<div data-role=\"fieldcontain\"><fieldset data-role=\"controlgroup\">";
     if (entryJSON.items !== undefined) {
         jQuery.each(entryJSON.items, function (key, item) {
